@@ -113,14 +113,17 @@ function App() {
               }
             />
 
-            {/* Additional Standard Informational Pages */}
+            {/* Additional Standard Informational Pages & Policy Aliases */}
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/faq" element={<FaqPage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+            <Route path="/privacy" element={<PrivacyPolicyPage />} />
             <Route path="/terms" element={<TermsPage />} />
             <Route path="/shipping-policy" element={<ShippingPolicyPage />} />
+            <Route path="/shipping" element={<ShippingPolicyPage />} />
             <Route path="/return-policy" element={<ReturnPolicyPage />} />
+            <Route path="/returns" element={<ReturnPolicyPage />} />
 
             {/* 404 Route */}
             <Route path="*" element={<NotFoundPage />} />
