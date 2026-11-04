@@ -72,3 +72,4 @@ Generative models increasingly analyze 3D geometry and images. AUTOX supports mu
 1. Providing GLTF/GLB 3D model metadata references.
 2. Embedding high-contrast, optimized photography with semantic alt attributes.
 3. Offering responsive WebGL fallbacks with descriptive text summaries for non-GPU scrapers.
+

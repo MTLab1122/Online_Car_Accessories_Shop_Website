@@ -11,12 +11,22 @@ import {
   Star,
   Quote,
   HelpCircle,
-  CheckCircle2
+  CheckCircle2,
+  Compass,
+  Layers,
+  Zap,
+  Box
 } from 'lucide-react';
+import { motion } from 'framer-motion';
 import InteractiveHeroCar from '../../three/InteractiveHeroCar';
 import ProductCard from '../../components/products/ProductCard';
 import QuickViewModal from '../../components/products/QuickViewModal';
+import CategoryCard from '../../components/ui/CategoryCard';
 import { ProductCardSkeleton } from '../../components/common/LoadingSkeleton';
+import { PrimaryButton, SecondaryButton } from '../../components/ui/Buttons';
+import { SectionHeading, EyebrowLabel } from '../../components/ui/Typography';
+import RevealOnScroll from '../../components/ui/RevealOnScroll';
+import AnimatedCounter from '../../components/ui/AnimatedCounter';
 import { productService } from '../../services/productService';
 import { categoryService } from '../../services/categoryService';
 import SEO from '../../components/common/SEO';
@@ -87,7 +97,7 @@ const HomePage = () => {
   const faqSchema = generateFAQSchema(homeFaqs);
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-autox-bg text-autox-text selection:bg-autox-orange selection:text-white">
       <SEO
         title="AUTOX | Premium Car Accessories & High-Performance Upgrades Pakistan"
         description="Pakistan's premier high-performance car accessories store. Interactive 3D showroom, laser-fit floor mats, carbon aero kits, LED headlights, dashcams, and fast nationwide delivery."
@@ -96,91 +106,140 @@ const HomePage = () => {
         schema={[organizationSchema, websiteSchema, faqSchema]}
       />
 
-      {/* 1. Immersive 3D Hero */}
+      {/* ========================================================
+          SECTION 1 — CINEMATIC HERO (Interactive 3D / Fallback)
+          ======================================================== */}
       <InteractiveHeroCar />
 
-      {/* 2. Featured Categories Section */}
-      <section className="py-20 bg-autox-bg border-b border-autox-border/60">
+      {/* ========================================================
+          SECTION 2 — BRAND EDITORIAL STATEMENT
+          ======================================================== */}
+      <section className="py-20 sm:py-28 bg-autox-surface border-y border-autox-border relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <RevealOnScroll>
+            <EyebrowLabel icon={Sparkles} className="mb-4">
+              The Performance Philosophy
+            </EyebrowLabel>
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold uppercase tracking-tight text-white leading-tight">
+              ENGINEERED FOR <span className="text-autox-orange">YOUR DRIVE.</span>
+            </h2>
+            <p className="mt-6 text-base sm:text-xl text-autox-silver font-sans leading-relaxed max-w-3xl mx-auto">
+              Every detail matters. We bridge aerospace autoclave carbon fiber, real-time 3D WebGL telemetry, and verified Pakistani performance logistics. Designed for enthusiasts who refuse ordinary.
+            </p>
+
+            <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6 pt-10 border-t border-autox-border/60">
+              <div>
+                <span className="text-3xl sm:text-4xl font-extrabold font-display text-white">
+                  <AnimatedCounter to={10} suffix="+" />
+                </span>
+                <p className="text-xs font-mono uppercase tracking-wider text-autox-muted mt-1">
+                  Equipment Divisions
+                </p>
+              </div>
+              <div>
+                <span className="text-3xl sm:text-4xl font-extrabold font-display text-autox-orange">
+                  <AnimatedCounter to={30} suffix="+" />
+                </span>
+                <p className="text-xs font-mono uppercase tracking-wider text-autox-muted mt-1">
+                  Verified Upgrades
+                </p>
+              </div>
+              <div>
+                <span className="text-3xl sm:text-4xl font-extrabold font-display text-white">
+                  100%
+                </span>
+                <p className="text-xs font-mono uppercase tracking-wider text-autox-muted mt-1">
+                  PKR Local Currency
+                </p>
+              </div>
+              <div>
+                <span className="text-3xl sm:text-4xl font-extrabold font-display text-autox-orange">
+                  <AnimatedCounter to={48} suffix="h" />
+                </span>
+                <p className="text-xs font-mono uppercase tracking-wider text-autox-muted mt-1">
+                  Express Hub Dispatch
+                </p>
+              </div>
+            </div>
+          </RevealOnScroll>
+        </div>
+      </section>
+
+      {/* ========================================================
+          SECTION 3 — FEATURED CATEGORIES
+          ======================================================== */}
+      <section className="py-24 bg-autox-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
             <div>
-              <span className="text-xs font-mono uppercase tracking-widest text-autox-orange font-bold">
-                Tailored Performance Tiers
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-white mt-1">
-                Explore Categories
+              <EyebrowLabel icon={Layers} className="mb-2">
+                Catalog Architecture
+              </EyebrowLabel>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold uppercase text-white tracking-tight mt-1">
+                Equipment <span className="text-autox-orange">Divisions</span>
               </h2>
+              <p className="text-xs sm:text-sm text-autox-muted mt-2 font-sans">
+                Aerodynamics, cockpit telemetry, forged alloys, and high-lumen optical systems.
+              </p>
             </div>
-            <Link
-              to="/categories"
-              className="mt-4 md:mt-0 inline-flex items-center gap-1.5 text-sm font-semibold uppercase tracking-wider text-autox-silver hover:text-autox-orange transition-colors"
-            >
-              <span>View All 10 Divisions</span>
-              <ArrowRight className="w-4 h-4" />
+
+            <Link to="/categories" className="mt-4 md:mt-0">
+              <SecondaryButton icon={ArrowRight} size="sm">
+                Explore All 10 Divisions
+              </SecondaryButton>
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {categories.map((cat) => (
-              <Link
-                key={cat._id}
-                to={`/categories/${cat.slug}`}
-                className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-autox-border hover:border-autox-orange/60 transition-all duration-300 shadow-card"
-              >
-                <img
-                  src={cat.image}
-                  alt={cat.name}
-                  loading="lazy"
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 filter contrast-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end p-5">
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-autox-orange font-bold">
-                    {cat.productCount ? `${cat.productCount} Items` : 'Division'}
-                  </span>
-                  <h3 className="font-display font-bold text-base sm:text-lg text-white group-hover:text-autox-orange transition-colors">
-                    {cat.name}
-                  </h3>
-                </div>
-              </Link>
+              <RevealOnScroll key={cat._id} delay={0.1}>
+                <CategoryCard category={cat} />
+              </RevealOnScroll>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 3. Trending & Best-Selling Catalog Section */}
-      <section className="py-20 bg-gradient-to-b from-autox-bg via-autox-dark/50 to-autox-bg border-b border-autox-border/60">
+      {/* ========================================================
+          SECTION 4 — FEATURED PRODUCTS (Actual PKR Catalog)
+          ======================================================== */}
+      <section className="py-24 bg-autox-surface border-y border-autox-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-12">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-14">
             <div>
-              <span className="text-xs font-mono uppercase tracking-widest text-autox-orange font-bold">
-                Engineered In Excellence
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-white mt-1">
-                Precision Hardware
+              <EyebrowLabel icon={Zap} className="mb-2">
+                Curated Components
+              </EyebrowLabel>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold uppercase text-white tracking-tight mt-1">
+                Precision <span className="text-autox-orange">Hardware</span>
               </h2>
+              <p className="text-xs sm:text-sm text-autox-muted mt-2 font-sans">
+                Track-tested components with verified dimensional tolerances in Pakistani Rupees (₨).
+              </p>
             </div>
 
             {/* Toggle Tabs */}
-            <div className="inline-flex p-1 rounded-xl bg-autox-card border border-autox-border">
+            <div className="inline-flex p-1 rounded-xl bg-autox-dark border border-autox-border">
               <button
                 onClick={() => setActiveTab('featured')}
-                className={`px-5 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all ${
+                className={`px-5 py-2 rounded-lg text-xs font-display font-bold uppercase tracking-wider transition-all ${
                   activeTab === 'featured'
                     ? 'bg-autox-orange text-white shadow-glow'
                     : 'text-autox-muted hover:text-white'
                 }`}
               >
-                Featured Releases
+                Featured Upgrades
               </button>
               <button
                 onClick={() => setActiveTab('bestsellers')}
-                className={`px-5 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all ${
+                className={`px-5 py-2 rounded-lg text-xs font-display font-bold uppercase tracking-wider transition-all ${
                   activeTab === 'bestsellers'
                     ? 'bg-autox-orange text-white shadow-glow'
                     : 'text-autox-muted hover:text-white'
                 }`}
               >
-                Best Sellers
+                Track Bestsellers
               </button>
             </div>
           </div>
@@ -204,141 +263,328 @@ const HomePage = () => {
             </div>
           ) : (
             <div className="text-center py-16 text-autox-muted">
-              <p>No products currently available in this collection.</p>
+              <p>No accessories currently available in this filter.</p>
             </div>
           )}
 
-          <div className="mt-12 text-center">
-            <Link
-              to="/shop"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl border border-autox-border hover:border-autox-orange text-white text-xs font-semibold uppercase tracking-wider bg-autox-card/60 hover:bg-autox-card transition-all"
-            >
-              <span>Explore Complete Catalog</span>
-              <ArrowRight className="w-4 h-4 text-autox-orange" />
+          <div className="mt-14 text-center">
+            <Link to="/shop">
+              <PrimaryButton icon={ArrowRight} size="lg">
+                Explore Full Equipment Catalog
+              </PrimaryButton>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* 4. Promotional Banner */}
-      <section className="relative py-16 bg-gradient-to-r from-[#170a05] via-[#241108] to-[#0d1016] border-y border-autox-border overflow-hidden">
-        <div className="absolute right-0 top-0 bottom-0 w-1/2 opacity-20 pointer-events-none">
-          <img
-            src="https://images.unsplash.com/photo-1558441719-7f363dd780db?auto=format&fit=crop&w=1000&q=80"
-            alt="Forged Performance Wheels"
-            className="w-full h-full object-cover object-center filter grayscale"
-          />
-        </div>
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-8">
-          <div>
-            <span className="px-3 py-1 rounded-full text-[11px] font-mono font-bold uppercase tracking-wider bg-autox-orange/20 text-autox-orange border border-autox-orange/40">
-              Limited Time Season Pass
-            </span>
-            <h2 className="text-2xl sm:text-4xl font-extrabold font-display text-white mt-3 uppercase">
-              Claim 10% Off Your First Build
-            </h2>
-            <p className="text-sm text-autox-silver mt-2 max-w-xl">
-              Use promo code <strong className="text-autox-orange font-mono">AUTOX10</strong> at checkout on all aerodynamic spoilers, LED projector lighting, and racing instrumentation.
-            </p>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <Link
-              to="/shop"
-              className="px-7 py-3.5 rounded-xl bg-autox-orange hover:bg-autox-orangeHover text-white text-xs font-semibold uppercase tracking-wider shadow-glow transition-all"
-            >
-              Apply Discount Now
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* 5. Why Choose AUTOX Engineering Pillars */}
-      <section className="py-20 bg-autox-bg border-b border-autox-border/60">
+      {/* ========================================================
+          SECTION 5 — IMMERSIVE 3D SHOWROOM SPOTLIGHT
+          ======================================================== */}
+      <section className="py-24 bg-autox-bg relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-xs font-mono uppercase tracking-widest text-autox-orange font-bold">
-              Automotive Integrity
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-white mt-1">
-              Why Enthusiasts Trust AUTOX
-            </h2>
-            <p className="text-sm text-autox-muted mt-2">
-              We engineer our catalogue with aerospace dry carbon fiber, high-precision telemetry, and transparent logistics.
-            </p>
-          </div>
+          <div className="rounded-3xl bg-gradient-to-br from-autox-surface via-[#141820] to-[#0d1015] border border-autox-border p-8 sm:p-14 relative overflow-hidden shadow-2xl">
+            {/* Background Graphic Accents */}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-autox-orange/10 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="glass-card p-6 rounded-2xl border border-autox-border flex flex-col items-start">
-              <div className="w-12 h-12 rounded-xl bg-autox-orange/20 border border-autox-orange/30 flex items-center justify-center text-autox-orange mb-4">
-                <ShieldCheck className="w-6 h-6" />
-              </div>
-              <h3 className="font-display font-bold text-lg text-white mb-2">100% Verified Quality</h3>
-              <p className="text-xs text-autox-muted leading-relaxed">
-                Every aero wing and telemetry computer passes dimensional QA inspection before nationwide dispatch.
-              </p>
-            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+              <div>
+                <EyebrowLabel icon={Compass} className="mb-4">
+                  Real-Time WebGL Telemetry
+                </EyebrowLabel>
 
-            <div className="glass-card p-6 rounded-2xl border border-autox-border flex flex-col items-start">
-              <div className="w-12 h-12 rounded-xl bg-autox-orange/20 border border-autox-orange/30 flex items-center justify-center text-autox-orange mb-4">
-                <Cpu className="w-6 h-6" />
-              </div>
-              <h3 className="font-display font-bold text-lg text-white mb-2">3D Virtual Fitting</h3>
-              <p className="text-xs text-autox-muted leading-relaxed">
-                Real-time WebGL shaders simulate exact finish, reflection, and fitment before placing an order.
-              </p>
-            </div>
+                <h2 className="text-3xl sm:text-5xl font-display font-extrabold uppercase text-white tracking-tight leading-tight">
+                  3D VIRTUAL <br />
+                  <span className="text-autox-orange">SHOWROOM LAB</span>
+                </h2>
 
-            <div className="glass-card p-6 rounded-2xl border border-autox-border flex flex-col items-start">
-              <div className="w-12 h-12 rounded-xl bg-autox-orange/20 border border-autox-orange/30 flex items-center justify-center text-autox-orange mb-4">
-                <Truck className="w-6 h-6" />
-              </div>
-              <h3 className="font-display font-bold text-lg text-white mb-2">Insured Delivery</h3>
-              <p className="text-xs text-autox-muted leading-relaxed">
-                Tracked consignments dispatched across Karachi, Lahore, Islamabad, and nationwide in reinforced packaging.
-              </p>
-            </div>
+                <p className="mt-4 text-sm sm:text-base text-autox-silver leading-relaxed font-sans max-w-lg">
+                  Inspect racing aerodynamics, titanium valvetronic exhausts, and forged monoblock wheels in real-time browser 3D. Rotate 360 degrees and test studio lighting presets before ordering.
+                </p>
 
-            <div className="glass-card p-6 rounded-2xl border border-autox-border flex flex-col items-start">
-              <div className="w-12 h-12 rounded-xl bg-autox-orange/20 border border-autox-orange/30 flex items-center justify-center text-autox-orange mb-4">
-                <Wrench className="w-6 h-6" />
+                {/* Lighting Presets Preview */}
+                <div className="mt-8 flex flex-wrap items-center gap-3">
+                  <span className="text-xs font-mono uppercase text-autox-muted mr-1">
+                    Environment Presets:
+                  </span>
+                  <span className="px-3 py-1 rounded-lg bg-autox-card border border-autox-border text-xs font-mono text-white">
+                    MIDNIGHT
+                  </span>
+                  <span className="px-3 py-1 rounded-lg bg-autox-card border border-autox-border text-xs font-mono text-autox-orange border-autox-orange/40">
+                    SUNSET
+                  </span>
+                  <span className="px-3 py-1 rounded-lg bg-autox-card border border-autox-border text-xs font-mono text-cyan-400">
+                    CYBER NOIR
+                  </span>
+                </div>
+
+                <div className="mt-10 flex flex-wrap items-center gap-4">
+                  <Link to="/showroom">
+                    <PrimaryButton icon={Compass} size="lg">
+                      Launch 3D Configurator
+                    </PrimaryButton>
+                  </Link>
+                  <Link to="/shop">
+                    <SecondaryButton icon={ArrowRight} size="lg">
+                      View Hardware Specs
+                    </SecondaryButton>
+                  </Link>
+                </div>
               </div>
-              <h3 className="font-display font-bold text-lg text-white mb-2">Enthusiast Support</h3>
-              <p className="text-xs text-autox-muted leading-relaxed">
-                Technical guidance from experienced track mechanics regarding offset, bolt pattern, and wiring specs.
-              </p>
+
+              {/* Showroom Visual Spotlight */}
+              <div className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-autox-border shadow-2xl group bg-autox-dark">
+                <img
+                  src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1200&q=80"
+                  alt="AUTOX 3D Showroom Simulation"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter contrast-125"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-mono text-white bg-black/60 backdrop-blur-md p-3 rounded-xl border border-autox-border">
+                  <span className="flex items-center gap-2">
+                    <Box className="w-4 h-4 text-autox-orange" />
+                    360° Interactive Free Camera
+                  </span>
+                  <span className="text-autox-orange font-bold uppercase">Ready</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 5.5. AEO Knowledge & FAQ Section */}
-      <section className="py-20 bg-autox-surface border-b border-autox-border/60">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <span className="text-xs font-mono uppercase tracking-widest text-autox-orange font-bold flex items-center justify-center gap-2">
-              <HelpCircle className="w-4 h-4" /> Driver Intelligence & FAQ
-            </span>
-            <h2 className="text-3xl font-extrabold font-display text-white mt-2">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-autox-muted text-xs mt-2">
-              Authoritative answers on Pakistani fitment, order dispatch, and 3D previewing.
-            </p>
+      {/* ========================================================
+          SECTION 6 — EDITORIAL MAGAZINE PRODUCT FEATURE
+          ======================================================== */}
+      <section className="py-24 bg-autox-surface border-y border-autox-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Visual Photography */}
+            <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-autox-border shadow-2xl group">
+              <img
+                src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=1200&q=80"
+                alt="Aerodynamics Dry Carbon Wing"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 filter contrast-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+              <div className="absolute top-4 left-4">
+                <span className="px-3 py-1 rounded bg-black/80 backdrop-blur-md text-[11px] font-mono uppercase tracking-wider text-autox-orange border border-autox-orange/30">
+                  Track Engineering Series
+                </span>
+              </div>
+            </div>
+
+            {/* Editorial Copy */}
+            <div>
+              <EyebrowLabel icon={Sparkles} className="mb-4">
+                Materials Science
+              </EyebrowLabel>
+
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold uppercase text-white tracking-tight leading-tight">
+                AERODYNAMICS <br />
+                <span className="text-autox-orange">AUTOCLAVE CURED.</span>
+              </h2>
+
+              <p className="mt-4 text-sm sm:text-base text-autox-silver font-sans leading-relaxed">
+                Vacuum-bagged 3K Toray dry carbon fiber engineered for minimal turbulence and verified high-speed downforce on Pakistani motorways. Zero synthetic filler, zero resin yellowing.
+              </p>
+
+              <div className="mt-6 space-y-3 font-mono text-xs text-autox-silver">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-autox-orange" />
+                  <span>3K Pre-Preg Autoclave Dry Carbon Construction</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-autox-orange" />
+                  <span>Sub-3.2kg total structural wing weight</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-autox-orange" />
+                  <span>Chassis-specific CNC billet mounting brackets</span>
+                </div>
+              </div>
+
+              <div className="mt-8">
+                <Link to="/categories/exterior-accessories">
+                  <PrimaryButton icon={ArrowRight} size="md">
+                    Inspect Aero Program
+                  </PrimaryButton>
+                </Link>
+              </div>
+            </div>
           </div>
+        </div>
+      </section>
+
+      {/* ========================================================
+          SECTION 7 — BRAND CAPABILITIES (Verified Policies)
+          ======================================================== */}
+      <section className="py-24 bg-autox-bg border-b border-autox-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="Commercial Assurance"
+            title="The AUTOX"
+            highlight="Standard"
+            subtitle="Authoritative Pakistani Rupees pricing, rapid express logistics, and dedicated mechanical compatibility verification."
+          />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="glass-card p-6 rounded-2xl flex flex-col justify-between">
+              <div>
+                <div className="w-12 h-12 rounded-xl bg-autox-orange/15 border border-autox-orange/30 flex items-center justify-center text-autox-orange mb-4">
+                  <ShieldCheck className="w-6 h-6" />
+                </div>
+                <h3 className="font-display font-bold text-lg text-white mb-2 uppercase">Verified Specs</h3>
+                <p className="text-xs text-autox-muted leading-relaxed font-sans">
+                  Every product is cataloged with exact millimeter dimensions, bolt patterns, and protocol compatibility.
+                </p>
+              </div>
+              <span className="text-[10px] font-mono text-autox-orange mt-6 uppercase tracking-wider">
+                100% Genuine
+              </span>
+            </div>
+
+            <div className="glass-card p-6 rounded-2xl flex flex-col justify-between">
+              <div>
+                <div className="w-12 h-12 rounded-xl bg-autox-orange/15 border border-autox-orange/30 flex items-center justify-center text-autox-orange mb-4">
+                  <Truck className="w-6 h-6" />
+                </div>
+                <h3 className="font-display font-bold text-lg text-white mb-2 uppercase">Express Logistics</h3>
+                <p className="text-xs text-autox-muted leading-relaxed font-sans">
+                  24–48h courier dispatch to Islamabad, Rawalpindi, Lahore, and Karachi in reinforced protective packaging.
+                </p>
+              </div>
+              <span className="text-[10px] font-mono text-autox-orange mt-6 uppercase tracking-wider">
+                Nationwide Tracking
+              </span>
+            </div>
+
+            <div className="glass-card p-6 rounded-2xl flex flex-col justify-between">
+              <div>
+                <div className="w-12 h-12 rounded-xl bg-autox-orange/15 border border-autox-orange/30 flex items-center justify-center text-autox-orange mb-4">
+                  <Cpu className="w-6 h-6" />
+                </div>
+                <h3 className="font-display font-bold text-lg text-white mb-2 uppercase">Cash on Delivery</h3>
+                <p className="text-xs text-autox-muted leading-relaxed font-sans">
+                  Inspect your parcel upon courier arrival before paying in Pakistani Rupees (₨) across all major cities.
+                </p>
+              </div>
+              <span className="text-[10px] font-mono text-autox-orange mt-6 uppercase tracking-wider">
+                COD Supported
+              </span>
+            </div>
+
+            <div className="glass-card p-6 rounded-2xl flex flex-col justify-between">
+              <div>
+                <div className="w-12 h-12 rounded-xl bg-autox-orange/15 border border-autox-orange/30 flex items-center justify-center text-autox-orange mb-4">
+                  <Wrench className="w-6 h-6" />
+                </div>
+                <h3 className="font-display font-bold text-lg text-white mb-2 uppercase">Mechanic Support</h3>
+                <p className="text-xs text-autox-muted leading-relaxed font-sans">
+                  Technical guidance from experienced track mechanics regarding offset, bolt pattern, and wiring specs.
+                </p>
+              </div>
+              <span className="text-[10px] font-mono text-autox-orange mt-6 uppercase tracking-wider">
+                Mon - Sat 9am-9pm
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================
+          SECTION 8 — CUSTOMER REVIEWS (Verified Pakistani Drivers)
+          ======================================================== */}
+      <section className="py-24 bg-autox-surface border-b border-autox-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="Driver Feedback"
+            title="Verified"
+            highlight="Testimonials"
+            subtitle="Real experiences from Pakistani sports sedan owners and track enthusiasts."
+          />
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="glass-card p-8 rounded-2xl relative flex flex-col justify-between">
+              <div>
+                <Quote className="w-8 h-8 text-autox-orange/30 mb-4" />
+                <div className="flex text-amber-400 mb-3">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-current" />
+                  ))}
+                </div>
+                <p className="text-xs sm:text-sm text-autox-silver italic leading-relaxed mb-6 font-sans">
+                  "The 3K dry carbon GT wing fit like an OEM factory option on my track car. Zero flutter at 190 km/h, and delivery to Lahore was under 48 hours."
+                </p>
+              </div>
+              <div className="pt-4 border-t border-autox-border">
+                <p className="text-sm font-bold font-display text-white">Hamza Tariq</p>
+                <p className="text-xs text-autox-muted font-mono">Civic X Turbo Track Build • Lahore</p>
+              </div>
+            </div>
+
+            <div className="glass-card p-8 rounded-2xl relative flex flex-col justify-between">
+              <div>
+                <Quote className="w-8 h-8 text-autox-orange/30 mb-4" />
+                <div className="flex text-amber-400 mb-3">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-current" />
+                  ))}
+                </div>
+                <p className="text-xs sm:text-sm text-autox-silver italic leading-relaxed mb-6 font-sans">
+                  "I was skeptical about ordering forged wheels online, but AUTOX's 3D showroom gave me confidence in the concavity. The finish is flawless."
+                </p>
+              </div>
+              <div className="pt-4 border-t border-autox-border">
+                <p className="text-sm font-bold font-display text-white">Zainab Bilal</p>
+                <p className="text-xs text-autox-muted font-mono">Golf GTI Enthusiast • Islamabad</p>
+              </div>
+            </div>
+
+            <div className="glass-card p-8 rounded-2xl relative flex flex-col justify-between">
+              <div>
+                <Quote className="w-8 h-8 text-autox-orange/30 mb-4" />
+                <div className="flex text-amber-400 mb-3">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-current" />
+                  ))}
+                </div>
+                <p className="text-xs sm:text-sm text-autox-silver italic leading-relaxed mb-6 font-sans">
+                  "Customer service verified my OBD2 protocol compatibility before sending the wireless HUD unit. Outstanding attention to detail."
+                </p>
+              </div>
+              <div className="pt-4 border-t border-autox-border">
+                <p className="text-sm font-bold font-display text-white">Saad Qureshi</p>
+                <p className="text-xs text-autox-muted font-mono">Islamabad Car Club • Rawalpindi</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================
+          AEO KNOWLEDGE & FAQ SECTION (Answer Engine Optimization)
+          ======================================================== */}
+      <section className="py-24 bg-autox-bg border-b border-autox-border">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="Knowledge & FAQs"
+            eyebrowIcon={HelpCircle}
+            title="Driver"
+            highlight="Intelligence"
+            subtitle="Authoritative answers on Pakistani fitment, order dispatch, and 3D previewing."
+          />
 
           <div className="space-y-4">
             {homeFaqs.map((faq, idx) => (
               <div
                 key={idx}
-                className="p-6 rounded-xl bg-autox-card border border-autox-border/80 hover:border-autox-orange/40 transition-colors"
+                className="p-6 rounded-2xl bg-autox-surface border border-autox-border hover:border-autox-orange/40 transition-colors"
               >
                 <h3 className="text-base font-display font-bold text-white mb-2 flex items-center gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-autox-orange flex-shrink-0" />
                   {faq.question}
                 </h3>
-                <p className="text-xs sm:text-sm text-autox-silver leading-relaxed pl-6.5">
+                <p className="text-xs sm:text-sm text-autox-silver leading-relaxed pl-6.5 font-sans">
                   {faq.answer}
                 </p>
               </div>
@@ -347,66 +593,37 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* 6. Customer Testimonials */}
-      <section className="py-20 bg-autox-dark/40 border-b border-autox-border/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-xl mx-auto mb-16">
-            <span className="text-xs font-mono uppercase tracking-widest text-autox-orange font-bold">
-              Driver Feedback
-            </span>
-            <h2 className="text-3xl font-extrabold font-display text-white mt-1">
-              Verified Testimonials
-            </h2>
-          </div>
+      {/* ========================================================
+          SECTION 9 — FINAL CALL TO ACTION
+          ======================================================== */}
+      <section className="py-28 bg-gradient-to-b from-autox-surface via-[#141820] to-autox-bg relative overflow-hidden text-center">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-autox-orange/10 via-transparent to-transparent pointer-events-none" />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="glass-card p-8 rounded-2xl border border-autox-border relative">
-              <Quote className="w-8 h-8 text-autox-orange/30 mb-4" />
-              <div className="flex text-amber-400 mb-3">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-current" />
-                ))}
-              </div>
-              <p className="text-sm text-autox-silver italic leading-relaxed mb-6">
-                "The 3K dry carbon GT wing fit like an OEM factory option on my track car. Zero flutter at 190 km/h, and delivery to Lahore was under 48 hours."
-              </p>
-              <div>
-                <p className="text-sm font-bold text-white">Hamza Tariq</p>
-                <p className="text-xs text-autox-muted font-mono">Civic X Turbo Track Build</p>
-              </div>
-            </div>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <EyebrowLabel icon={Sparkles} className="mb-4">
+            Take Command
+          </EyebrowLabel>
 
-            <div className="glass-card p-8 rounded-2xl border border-autox-border relative">
-              <Quote className="w-8 h-8 text-autox-orange/30 mb-4" />
-              <div className="flex text-amber-400 mb-3">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-current" />
-                ))}
-              </div>
-              <p className="text-sm text-autox-silver italic leading-relaxed mb-6">
-                "I was skeptical about ordering forged wheels online, but AUTOX's 3D showroom gave me confidence in the concavity. The craftsmanship is flawless."
-              </p>
-              <div>
-                <p className="text-sm font-bold text-white">Zainab Bilal</p>
-                <p className="text-xs text-autox-muted font-mono">Golf GTI Enthusiast</p>
-              </div>
-            </div>
+          <h2 className="text-4xl sm:text-6xl font-display font-extrabold uppercase text-white tracking-tight leading-tight">
+            YOUR DRIVE. YOUR STYLE. <br />
+            <span className="text-autox-orange">YOUR AUTOX.</span>
+          </h2>
 
-            <div className="glass-card p-8 rounded-2xl border border-autox-border relative">
-              <Quote className="w-8 h-8 text-autox-orange/30 mb-4" />
-              <div className="flex text-amber-400 mb-3">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-current" />
-                ))}
-              </div>
-              <p className="text-sm text-autox-silver italic leading-relaxed mb-6">
-                "Customer service verified my OBD2 protocol compatibility before sending the wireless HUD unit. Outstanding attention to detail."
-              </p>
-              <div>
-                <p className="text-sm font-bold text-white">Saad Qureshi</p>
-                <p className="text-xs text-autox-muted font-mono">Islamabad Car Club</p>
-              </div>
-            </div>
+          <p className="mt-4 text-sm sm:text-base text-autox-silver max-w-xl mx-auto font-sans leading-relaxed">
+            Upgrade your vehicle with authentic high-performance accessories. 3D interactive previewing, nationwide express delivery, and cash on delivery in PKR.
+          </p>
+
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <Link to="/shop">
+              <PrimaryButton icon={ArrowRight} size="lg">
+                Explore The Collection
+              </PrimaryButton>
+            </Link>
+            <Link to="/showroom">
+              <SecondaryButton icon={Compass} size="lg">
+                Launch 3D Showroom
+              </SecondaryButton>
+            </Link>
           </div>
         </div>
       </section>
@@ -423,4 +640,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-

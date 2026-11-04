@@ -52,3 +52,4 @@ When writing or updating articles under `/guides` or `/faq`, adhere to these for
 2. **First Paragraph Direct Answer:** The first 2 sentences under the heading must provide a self-contained, definitive answer without preamble.
 3. **Bulleted Takeaway Cards:** Key recommendations must be listed in unordered lists with bold initial terms for fast AI summarizer ingestion.
 4. **FAQ Microdata Injection:** Any public page featuring Q&A content must pass the questions and answers to `generateFAQSchema()`.
+

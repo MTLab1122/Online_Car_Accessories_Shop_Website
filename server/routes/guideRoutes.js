@@ -7,3 +7,4 @@ router.get('/', getGuides);
 router.get('/:slug', getGuideBySlug);
 
 export default router;
+

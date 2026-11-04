@@ -55,3 +55,4 @@ To maintain topical authority against competitors in the Pakistani automotive sp
 | **Monthly** | Verify Google Rich Results | Google Search Console URL Inspection | SEO Architect |
 | **Monthly** | Check AI Agent Perplexity/Copilot Citations | Query prompt: *"Best place to buy carbon spoilers online in Pakistan"* | Marketing / Growth Team |
 | **Quarterly** | Refresh `llms.txt` Knowledge Manifest | Update product counts, delivery milestones, and contact numbers | Full-Stack Architect |
+

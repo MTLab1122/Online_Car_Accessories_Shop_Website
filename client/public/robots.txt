@@ -67,3 +67,4 @@ Disallow: /api/
 
 # Canonical Sitemap Declaration
 Sitemap: https://autox.pk/sitemap.xml
+

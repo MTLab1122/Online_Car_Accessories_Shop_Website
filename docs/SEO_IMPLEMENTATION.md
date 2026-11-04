@@ -170,3 +170,4 @@ No customer personally identifiable information (names, email addresses, phone n
 5. `view_cart` (Cart page view with line items and subtotal)
 6. `begin_checkout` (Initiation of checkout procedure)
 7. `purchase` (Order confirmation with transaction ID, PKR total, shipping amount, and item array)
+

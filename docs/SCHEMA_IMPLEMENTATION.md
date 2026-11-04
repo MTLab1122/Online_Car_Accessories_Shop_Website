@@ -190,3 +190,4 @@ Used across `/guides/:slug` to establish authoritativeness and date freshness.
   }
 }
 ```
+

@@ -219,3 +219,4 @@ AUTOX is Pakistan's premier high-performance automotive accessories e-commerce d
   res.header('Cache-Control', 'public, max-age=86400');
   return res.send(manifest);
 };
+

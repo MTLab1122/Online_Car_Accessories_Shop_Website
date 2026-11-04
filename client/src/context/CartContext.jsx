@@ -15,6 +15,11 @@ export const CartProvider = ({ children }) => {
     coupon: null
   });
   const [loading, setLoading] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const openDrawer = useCallback(() => setIsDrawerOpen(true), []);
+  const closeDrawer = useCallback(() => setIsDrawerOpen(false), []);
+  const toggleDrawer = useCallback(() => setIsDrawerOpen(prev => !prev), []);
 
   const fetchCart = useCallback(async () => {
     try {
@@ -136,7 +141,11 @@ export const CartProvider = ({ children }) => {
         applyCoupon,
         removeCoupon,
         clearCart,
-        refreshCart: fetchCart
+        refreshCart: fetchCart,
+        isDrawerOpen,
+        openDrawer,
+        closeDrawer,
+        toggleDrawer
       }}
     >
       {children}

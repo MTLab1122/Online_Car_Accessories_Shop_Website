@@ -14,7 +14,13 @@ vi.mock('../context/AuthContext', () => ({
 }));
 
 vi.mock('../context/CartContext', () => ({
-  useCart: () => ({ itemCount: 3 })
+  useCart: () => ({
+    itemCount: 3,
+    isDrawerOpen: false,
+    openDrawer: vi.fn(),
+    closeDrawer: vi.fn(),
+    cart: { items: [], subtotal: 0, total: 0 }
+  })
 }));
 
 vi.mock('../context/WishlistContext', () => ({

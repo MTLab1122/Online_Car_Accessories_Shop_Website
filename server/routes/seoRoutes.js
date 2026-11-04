@@ -8,3 +8,4 @@ router.get('/sitemap.xml', getSitemapXml);
 router.get('/llms.txt', getLlmsTxt);
 
 export default router;
+

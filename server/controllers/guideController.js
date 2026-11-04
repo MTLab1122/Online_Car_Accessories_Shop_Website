@@ -41,3 +41,4 @@ export const getGuideBySlug = async (req, res, next) => {
     next(err);
   }
 };
+
