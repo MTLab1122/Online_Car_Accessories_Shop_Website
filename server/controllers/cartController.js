@@ -92,12 +92,20 @@ const formatCartResponse = async (cart) => {
 
 // Helper to find or create cart for user or guest session
 const getCartInstance = async (req) => {
-  const sessionId = req.headers['x-session-id'] || req.cookies?.sessionId || req.query.sessionId;
+  const sessionId = req.headers['x-session-id'] || req.cookies?.sessionId || req.query?.sessionId;
 
   if (req.user) {
     let cart = await Cart.findOne({ user: req.user._id });
     if (!cart) {
-      cart = await Cart.create({ user: req.user._id, items: [] });
+      try {
+        cart = await Cart.create({ user: req.user._id, items: [] });
+      } catch (err) {
+        if (err.code === 11000) {
+          cart = await Cart.findOne({ user: req.user._id });
+        } else {
+          throw err;
+        }
+      }
     }
     return cart;
   }
@@ -105,15 +113,30 @@ const getCartInstance = async (req) => {
   if (sessionId) {
     let cart = await Cart.findOne({ sessionId });
     if (!cart) {
-      cart = await Cart.create({ sessionId, items: [] });
+      try {
+        cart = await Cart.create({ sessionId, items: [] });
+      } catch (err) {
+        if (err.code === 11000) {
+          cart = await Cart.findOne({ sessionId });
+        } else {
+          throw err;
+        }
+      }
     }
     return cart;
   }
 
   // Generate a fallback session id if none provided
   const newSessionId = `guest_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
-  const cart = await Cart.create({ sessionId: newSessionId, items: [] });
-  return cart;
+  try {
+    const cart = await Cart.create({ sessionId: newSessionId, items: [] });
+    return cart;
+  } catch (err) {
+    if (err.code === 11000) {
+      return await Cart.findOne({ sessionId: newSessionId });
+    }
+    throw err;
+  }
 };
 
 // @desc    Get user or session cart

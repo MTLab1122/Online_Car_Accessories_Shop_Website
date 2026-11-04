@@ -20,7 +20,8 @@
     "install:all": "npm install && cd server && npm install && cd ../client && npm install"
   },
   "devDependencies": {
-    "concurrently": "^9.1.2"
+    "concurrently": "^9.1.2",
+    "playwright": "^1.64.1"
   },
   "keywords": [
     "mern",
@@ -34,4 +35,3 @@
   "author": "AUTOX Team",
   "license": "ISC"
 }
-

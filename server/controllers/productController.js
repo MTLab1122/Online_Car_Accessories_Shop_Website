@@ -35,7 +35,7 @@ export const getProducts = async (req, res, next) => {
     }
 
     // Category filter by category slug or ObjectId
-    if (category) {
+    if (category && category.trim() !== '') {
       if (category.match(/^[0-9a-fA-F]{24}$/)) {
         query.category = category;
       } else {
@@ -55,20 +55,24 @@ export const getProducts = async (req, res, next) => {
     }
 
     // Brand filter (supports comma-separated)
-    if (brand) {
-      const brands = brand.split(',').map(b => b.trim());
-      query.brand = { $in: brands.map(b => new RegExp(`^${b}$`, 'i')) };
+    if (brand && brand.trim() !== '') {
+      const brands = brand.split(',').map(b => b.trim()).filter(Boolean);
+      if (brands.length > 0) {
+        query.brand = { $in: brands.map(b => new RegExp(`^${b}$`, 'i')) };
+      }
     }
 
     // Price range
-    if (minPrice !== undefined || maxPrice !== undefined) {
+    const hasMin = minPrice !== undefined && minPrice !== '' && !isNaN(Number(minPrice));
+    const hasMax = maxPrice !== undefined && maxPrice !== '' && !isNaN(Number(maxPrice));
+    if (hasMin || hasMax) {
       query.price = {};
-      if (minPrice !== undefined && minPrice !== '') query.price.$gte = Number(minPrice);
-      if (maxPrice !== undefined && maxPrice !== '') query.price.$lte = Number(maxPrice);
+      if (hasMin) query.price.$gte = Number(minPrice);
+      if (hasMax) query.price.$lte = Number(maxPrice);
     }
 
     // Minimum rating
-    if (rating !== undefined && rating !== '') {
+    if (rating !== undefined && rating !== '' && !isNaN(Number(rating))) {
       query.ratingAverage = { $gte: Number(rating) };
     }
 

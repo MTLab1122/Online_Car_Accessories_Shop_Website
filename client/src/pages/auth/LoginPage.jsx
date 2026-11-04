@@ -22,8 +22,9 @@ const LoginPage = () => {
 
     try {
       setSubmitting(true);
-      await login({ email, password });
-      navigate(from, { replace: true });
+      const userResult = await login({ email, password });
+      const target = location.state?.from?.pathname || (userResult?.role === 'admin' ? '/admin' : '/account');
+      navigate(target, { replace: true });
     } catch (err) {
       setErrorMessage(err.message || 'Login failed. Please check your credentials.');
     } finally {
