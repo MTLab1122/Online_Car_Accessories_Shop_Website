@@ -56,3 +56,4 @@ The showroom provides real-time dynamic studio atmospheres selectable via the fl
 2. **Polar Angle Clamping**: OrbitControls clamped at `maxPolarAngle={Math.PI / 2 - 0.05}`, preventing camera clipping below the studio pedestal ground plane.
 3. **Smooth Damping**: `dampingFactor={0.05}` provides buttery inertia on touch swipes and trackpads.
 4. **Suspense Lazy Loading**: The 3D canvas is wrapped in React `Suspense` and code-split into a separate Vite chunk (`ShowroomScene-*.js`), ensuring initial page loads remain lightweight.
+

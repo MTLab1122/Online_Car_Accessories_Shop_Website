@@ -1,0 +1,65 @@
+{
+  "name": "AUTOX — Premium Car Accessories",
+  "short_name": "AUTOX",
+  "description": "Premium automotive accessories engineered for your drive. 3D WebGL Showroom and high-performance car upgrades across Pakistan.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#080A0D",
+  "theme_color": "#080A0D",
+  "categories": [
+    "shopping",
+    "automotive"
+  ],
+  "lang": "en-PK",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-maskable-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon-maskable-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Explore Shop",
+      "short_name": "Shop",
+      "description": "Browse performance automotive parts and accessories in Pakistan",
+      "url": "/shop",
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "3D Showroom",
+      "short_name": "Showroom",
+      "description": "Interactive WebGL 3D accessories configurator",
+      "url": "/showroom",
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
+    }
+  ]
+}

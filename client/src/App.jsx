@@ -6,6 +6,8 @@ import Navbar from './components/navigation/Navbar';
 import Footer from './components/navigation/Footer';
 import ProtectedRoute from './components/common/ProtectedRoute';
 import AdminRoute from './components/common/AdminRoute';
+import OfflineIndicator from './components/pwa/OfflineIndicator';
+import UpdateNotification from './components/pwa/UpdateNotification';
 
 // Lazy loaded page components
 const HomePage = lazy(() => import('./pages/public/HomePage'));
@@ -65,6 +67,10 @@ function App() {
           }
         }}
       />
+
+      {/* PWA Telemetry & Offline Management */}
+      <OfflineIndicator />
+      <UpdateNotification />
 
       {/* Global Navigation */}
       <Navbar />

@@ -74,7 +74,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/', seoRoutes);
 
 // Health check endpoint
-app.get('/api/health', (req, res) => {
+app.get(['/api/health', '/api/v1/health'], (req, res) => {
   res.json({
     status: 'healthy',
     timestamp: new Date().toISOString(),

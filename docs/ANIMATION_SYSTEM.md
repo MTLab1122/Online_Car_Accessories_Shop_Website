@@ -69,3 +69,4 @@ In `client/src/styles/index.css`:
 }
 ```
 Three.js auto-rotation and Float oscillations detect `window.matchMedia('(prefers-reduced-motion: reduce)')` to automatically freeze turntable sweeps for users requiring motionless viewports.
+

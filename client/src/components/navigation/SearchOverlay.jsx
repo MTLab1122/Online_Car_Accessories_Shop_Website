@@ -239,3 +239,4 @@ export const SearchOverlay = ({ isOpen, onClose }) => {
 };
 
 export default SearchOverlay;
+

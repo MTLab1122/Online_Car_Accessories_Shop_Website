@@ -51,3 +51,4 @@ Every public and admin route is lazy-loaded via React `lazy()` and `Suspense`:
 
 - **Search Debounce**: The live search overlay (`SearchOverlay.jsx`) debounces API input by `300ms`, preventing redundant server calls during rapid typing.
 - **Vite Asset Fingerprinting**: All JS, CSS, and SVG assets are compiled with immutable content hashes for aggressive HTTP caching (`Cache-Control: public, max-age=31536000, immutable`).
+

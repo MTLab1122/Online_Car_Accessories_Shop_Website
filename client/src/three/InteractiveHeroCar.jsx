@@ -1,26 +1,14 @@
 import React, { Suspense, useRef, useState, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { useGLTF, ContactShadows, Environment, Float, Html } from '@react-three/drei';
+import { ContactShadows, Environment, Float, Html } from '@react-three/drei';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Box, Compass, Sparkles, ShieldCheck } from 'lucide-react';
 import * as THREE from 'three';
 
-// Fallback high-fidelity sports car model loader
+// Sophisticated High-Performance Geometric Automotive Display
 const CarModel = ({ pointer, reducedMotion }) => {
   const groupRef = useRef();
-  const [modelError, setModelError] = useState(false);
-
-  // Attempt to load GLB if present
-  let gltf = null;
-  try {
-    // We try to load local or standard car asset
-    gltf = useGLTF('/models/car.glb', undefined, undefined, () => {
-      setModelError(true);
-    });
-  } catch {
-    // Caught in suspense / error boundary
-  }
 
   useFrame((state, delta) => {
     if (!groupRef.current || reducedMotion) return;
@@ -43,15 +31,6 @@ const CarModel = ({ pointer, reducedMotion }) => {
     );
   });
 
-  if (gltf && gltf.scene && !modelError) {
-    return (
-      <group ref={groupRef} position={[0, -0.65, 0]} scale={1.3}>
-        <primitive object={gltf.scene} />
-      </group>
-    );
-  }
-
-  // Sophisticated High-Performance Geometric Automotive Display
   return (
     <group ref={groupRef} position={[0, -0.5, 0]}>
       {/* Sleek Aerodynamic Car Silhouette Chassis */}

@@ -43,3 +43,4 @@ In the 3D Showroom:
 
 ### 3.4 Fixed Mobile Navigation Drawer
 The mobile navigation slides out from the right using hardware-accelerated spring animations, providing immediate access to Home, Shop, Categories, 3D Showroom, Guides, About, and Contact.
+

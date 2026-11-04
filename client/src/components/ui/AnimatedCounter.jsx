@@ -47,3 +47,4 @@ export const AnimatedCounter = ({
 };
 
 export default AnimatedCounter;
+

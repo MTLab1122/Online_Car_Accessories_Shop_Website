@@ -20,17 +20,18 @@ router.route('/')
   .post(addItemToCart)
   .delete(clearCart);
 
+// Specific named routes FIRST to avoid parameterized route collision
 router.post('/items', addItemToCart);
 router.patch('/items/:productId', updateCartItem);
 router.delete('/items/:productId', removeCartItem);
-
-router.patch('/:productId', updateCartItem);
-router.delete('/:productId', removeCartItem);
 
 router.post('/coupon', applyCoupon);
 router.delete('/coupon', removeCoupon);
 
 router.post('/sync', protect, syncGuestCart);
 
-export default router;
+// Parameterized fallback aliases
+router.patch('/:productId', updateCartItem);
+router.delete('/:productId', removeCartItem);
 
+export default router;

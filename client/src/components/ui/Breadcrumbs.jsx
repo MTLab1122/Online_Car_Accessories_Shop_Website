@@ -31,3 +31,4 @@ export const Breadcrumbs = ({ items = [], className = '' }) => {
 };
 
 export default Breadcrumbs;
+

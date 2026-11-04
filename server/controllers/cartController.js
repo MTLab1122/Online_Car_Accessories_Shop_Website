@@ -94,47 +94,41 @@ const formatCartResponse = async (cart) => {
 const getCartInstance = async (req) => {
   const sessionId = req.headers['x-session-id'] || req.cookies?.sessionId || req.query?.sessionId;
 
-  if (req.user) {
-    let cart = await Cart.findOne({ user: req.user._id });
-    if (!cart) {
-      try {
-        cart = await Cart.create({ user: req.user._id, items: [] });
-      } catch (err) {
-        if (err.code === 11000) {
-          cart = await Cart.findOne({ user: req.user._id });
-        } else {
-          throw err;
-        }
-      }
-    }
-    return cart;
-  }
-
-  if (sessionId) {
-    let cart = await Cart.findOne({ sessionId });
-    if (!cart) {
-      try {
-        cart = await Cart.create({ sessionId, items: [] });
-      } catch (err) {
-        if (err.code === 11000) {
-          cart = await Cart.findOne({ sessionId });
-        } else {
-          throw err;
-        }
-      }
-    }
-    return cart;
-  }
-
-  // Generate a fallback session id if none provided
-  const newSessionId = `guest_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
   try {
-    const cart = await Cart.create({ sessionId: newSessionId, items: [] });
+    if (req.user) {
+      let cart = await Cart.findOne({ user: req.user._id });
+      if (!cart) {
+        cart = await Cart.findOneAndUpdate(
+          { user: req.user._id },
+          { $setOnInsert: { user: req.user._id, items: [] } },
+          { new: true, upsert: true }
+        );
+      }
+      return cart;
+    }
+
+    if (sessionId) {
+      let cart = await Cart.findOne({ sessionId });
+      if (!cart) {
+        cart = await Cart.findOneAndUpdate(
+          { sessionId },
+          { $setOnInsert: { sessionId, items: [] } },
+          { new: true, upsert: true }
+        );
+      }
+      return cart;
+    }
+
+    // Generate a fallback session id if none provided
+    const newSessionId = `guest_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
+    const cart = await Cart.findOneAndUpdate(
+      { sessionId: newSessionId },
+      { $setOnInsert: { sessionId: newSessionId, items: [] } },
+      { new: true, upsert: true }
+    );
     return cart;
   } catch (err) {
-    if (err.code === 11000) {
-      return await Cart.findOne({ sessionId: newSessionId });
-    }
+    console.error('[getCartInstance Error]:', err);
     throw err;
   }
 };
@@ -309,10 +303,13 @@ export const applyCoupon = async (req, res, next) => {
 export const removeCoupon = async (req, res, next) => {
   try {
     const cart = await getCartInstance(req);
-    cart.coupon = null;
-    await cart.save();
+    const updated = await Cart.findByIdAndUpdate(
+      cart._id,
+      { $unset: { coupon: '' } },
+      { new: true }
+    );
 
-    const formatted = await formatCartResponse(cart);
+    const formatted = await formatCartResponse(updated);
     return successResponse(res, 200, 'Coupon removed', formatted);
   } catch (err) {
     next(err);

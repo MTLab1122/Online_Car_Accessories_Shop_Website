@@ -80,3 +80,4 @@ boxShadow: {
 1. **Currency Authority**: All items, calculations, coupons, and orders calculate exclusively in Pakistani Rupees (`PKR / ₨`).
 2. **Logistics Integration**: Delivery thresholds and dispatch badges highlight domestic couriers (`TCS`, `Leopards`, `Call Courier`) with 24-48h dispatch guarantees.
 3. **Cash on Delivery (COD)**: First-class billing option across checkout and customer manifest displays.
+

@@ -34,3 +34,4 @@ export const StockIndicator = ({
 };
 
 export default StockIndicator;
+

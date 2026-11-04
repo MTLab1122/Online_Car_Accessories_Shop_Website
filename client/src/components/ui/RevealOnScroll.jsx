@@ -22,3 +22,4 @@ export const RevealOnScroll = ({
 };
 
 export default RevealOnScroll;
+
