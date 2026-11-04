@@ -9,7 +9,9 @@ import {
   Sparkles,
   ChevronRight,
   Star,
-  Quote
+  Quote,
+  HelpCircle,
+  CheckCircle2
 } from 'lucide-react';
 import InteractiveHeroCar from '../../three/InteractiveHeroCar';
 import ProductCard from '../../components/products/ProductCard';
@@ -17,6 +19,12 @@ import QuickViewModal from '../../components/products/QuickViewModal';
 import { ProductCardSkeleton } from '../../components/common/LoadingSkeleton';
 import { productService } from '../../services/productService';
 import { categoryService } from '../../services/categoryService';
+import SEO from '../../components/common/SEO';
+import {
+  generateOrganizationSchema,
+  generateWebSiteSchema,
+  generateFAQSchema
+} from '../../utils/schemaGenerator';
 
 const HomePage = () => {
   const [categories, setCategories] = useState([]);
@@ -55,8 +63,39 @@ const HomePage = () => {
 
   const displayedProducts = activeTab === 'featured' ? featuredProducts : bestSellers;
 
+  const homeFaqs = [
+    {
+      question: 'What automotive accessories does AUTOX offer in Pakistan?',
+      answer: 'AUTOX offers verified high-performance automotive accessories including aerodynamic carbon fiber body kits, laser-fit 3D floor mats, 4K dual dashcams, LED Matrix projector headlights, forged alloy wheels, and detailing care across Pakistan.'
+    },
+    {
+      question: 'Does AUTOX support Cash on Delivery (COD)?',
+      answer: 'Yes, AUTOX supports nationwide Cash on Delivery (COD) across Karachi, Lahore, Islamabad, Rawalpindi, Faisalabad, Multan, and major cities across Pakistan.'
+    },
+    {
+      question: 'How fast is delivery for car accessories in Pakistan?',
+      answer: 'Orders for metropolitan hubs (Islamabad, Rawalpindi, Lahore, Karachi) are dispatched via express courier within 24 to 48 hours. Regional deliveries typically arrive within 2 to 4 business days.'
+    },
+    {
+      question: 'Can I preview accessories in 3D before purchasing?',
+      answer: 'Yes, AUTOX features a real-time Three.js 3D Virtual Showroom where drivers can inspect aerodynamic components, rims, and body accents from 360-degree interactive camera angles.'
+    }
+  ];
+
+  const organizationSchema = generateOrganizationSchema();
+  const websiteSchema = generateWebSiteSchema();
+  const faqSchema = generateFAQSchema(homeFaqs);
+
   return (
     <div className="flex flex-col min-h-screen">
+      <SEO
+        title="AUTOX | Premium Car Accessories & High-Performance Upgrades Pakistan"
+        description="Pakistan's premier high-performance car accessories store. Interactive 3D showroom, laser-fit floor mats, carbon aero kits, LED headlights, dashcams, and fast nationwide delivery."
+        canonical="https://autox.pk/"
+        keywords="car accessories pakistan, online car parts lahore karachi islamabad, auto accessories online pkr, 3d car showroom, led projector headlights pakistan, forged wheels"
+        schema={[organizationSchema, websiteSchema, faqSchema]}
+      />
+
       {/* 1. Immersive 3D Hero */}
       <InteractiveHeroCar />
 
@@ -270,6 +309,40 @@ const HomePage = () => {
                 Technical guidance from experienced track mechanics regarding offset, bolt pattern, and wiring specs.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5.5. AEO Knowledge & FAQ Section */}
+      <section className="py-20 bg-autox-surface border-b border-autox-border/60">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="text-xs font-mono uppercase tracking-widest text-autox-orange font-bold flex items-center justify-center gap-2">
+              <HelpCircle className="w-4 h-4" /> Driver Intelligence & FAQ
+            </span>
+            <h2 className="text-3xl font-extrabold font-display text-white mt-2">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-autox-muted text-xs mt-2">
+              Authoritative answers on Pakistani fitment, order dispatch, and 3D previewing.
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            {homeFaqs.map((faq, idx) => (
+              <div
+                key={idx}
+                className="p-6 rounded-xl bg-autox-card border border-autox-border/80 hover:border-autox-orange/40 transition-colors"
+              >
+                <h3 className="text-base font-display font-bold text-white mb-2 flex items-center gap-2.5">
+                  <CheckCircle2 className="w-4 h-4 text-autox-orange flex-shrink-0" />
+                  {faq.question}
+                </h3>
+                <p className="text-xs sm:text-sm text-autox-silver leading-relaxed pl-6.5">
+                  {faq.answer}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

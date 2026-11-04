@@ -1,9 +1,16 @@
 import React from 'react';
 import { Truck, ShieldCheck, MapPin } from 'lucide-react';
+import SEO from '../../components/common/SEO';
 
 const ShippingPolicyPage = () => {
   return (
     <div className="min-h-screen bg-autox-bg py-16 text-autox-silver">
+      <SEO
+        title="Shipping & Delivery Policy (PKR) | AUTOX Pakistan"
+        description="Review nationwide shipping rates, transit timelines, cash on delivery terms, and courier tracking across Pakistan for AUTOX automotive accessories."
+        canonical="https://autox.pk/shipping-policy"
+      />
+
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div>
           <span className="text-xs font-mono uppercase tracking-widest text-autox-orange font-bold">

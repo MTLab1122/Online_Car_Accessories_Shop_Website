@@ -25,6 +25,8 @@ const AdminDashboardPage = lazy(() => import('./pages/admin/AdminDashboardPage')
 const AboutPage = lazy(() => import('./pages/public/AboutPage'));
 const ContactPage = lazy(() => import('./pages/public/ContactPage'));
 const FaqPage = lazy(() => import('./pages/public/FaqPage'));
+const GuidesPage = lazy(() => import('./pages/public/GuidesPage'));
+const GuideDetailPage = lazy(() => import('./pages/public/GuideDetailPage'));
 const PrivacyPolicyPage = lazy(() => import('./pages/public/PrivacyPolicyPage'));
 const TermsPage = lazy(() => import('./pages/public/TermsPage'));
 const ShippingPolicyPage = lazy(() => import('./pages/public/ShippingPolicyPage'));
@@ -117,6 +119,8 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/faq" element={<FaqPage />} />
+            <Route path="/guides" element={<GuidesPage />} />
+            <Route path="/guides/:slug" element={<GuideDetailPage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
             <Route path="/privacy" element={<PrivacyPolicyPage />} />
             <Route path="/terms" element={<TermsPage />} />

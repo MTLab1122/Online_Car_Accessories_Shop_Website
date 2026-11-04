@@ -5,6 +5,9 @@ import ProductCard from '../../components/products/ProductCard';
 import QuickViewModal from '../../components/products/QuickViewModal';
 import { ProductCardSkeleton } from '../../components/common/LoadingSkeleton';
 import { categoryService } from '../../services/categoryService';
+import SEO from '../../components/common/SEO';
+import { generateBreadcrumbSchema, generateCollectionSchema } from '../../utils/schemaGenerator';
+import { analytics } from '../../utils/analytics';
 
 const CategoryDetailPage = () => {
   const { slug } = useParams();
@@ -20,7 +23,9 @@ const CategoryDetailPage = () => {
         const res = await categoryService.getCategoryBySlug(slug);
         if (res.success && res.data) {
           setCategory(res.data.category);
-          setProducts(res.data.products || []);
+          const prods = res.data.products || [];
+          setProducts(prods);
+          analytics.viewItemList(prods, res.data.category?.name || 'Category View');
         }
       } catch (err) {
         console.error('Failed to load category', err);
@@ -58,8 +63,34 @@ const CategoryDetailPage = () => {
     );
   }
 
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Categories', url: '/categories' },
+    { name: category.name, url: `/categories/${category.slug}` }
+  ];
+
+  const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
+  const collectionSchema = generateCollectionSchema({
+    title: `${category.name} Accessories | AUTOX Pakistan`,
+    description: category.description || `Buy ${category.name} accessories online in Pakistan with nationwide express delivery in PKR.`,
+    url: `https://autox.pk/categories/${category.slug}`,
+    items: products.map(p => ({
+      name: p.name,
+      url: `https://autox.pk/product/${p.slug}`,
+      image: p.images?.[0]?.url || p.images?.[0]
+    }))
+  });
+
   return (
     <div className="min-h-screen bg-autox-bg py-10">
+      <SEO
+        title={`${category.name} Accessories Pakistan | AUTOX Performance Lab`}
+        description={category.description ? `${category.description} Shop online in PKR with fast shipping across Pakistan.` : `Shop premium ${category.name} for your car in Pakistan. Express delivery in Karachi, Lahore, Islamabad, and nationwide.`}
+        canonical={`https://autox.pk/categories/${category.slug}`}
+        keywords={`${category.name.toLowerCase()} accessories pakistan, buy ${category.name.toLowerCase()} car parts online, car upgrades pkr`}
+        schema={[breadcrumbSchema, collectionSchema]}
+      />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back Link */}
         <Link

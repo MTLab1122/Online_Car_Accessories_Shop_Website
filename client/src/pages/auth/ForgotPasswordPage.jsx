@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Mail, ArrowRight, CheckCircle, ArrowLeft } from 'lucide-react';
 import { authService } from '../../services/authService';
 import toast from 'react-hot-toast';
+import SEO from '../../components/common/SEO';
 
 const ForgotPasswordPage = () => {
   const [email, setEmail] = useState('');
@@ -31,6 +32,7 @@ const ForgotPasswordPage = () => {
 
   return (
     <div className="min-h-screen bg-autox-bg flex items-center justify-center p-4 py-16">
+      <SEO title="Password Recovery | AUTOX" noindex={true} />
       <div className="w-full max-w-md glass-card p-8 sm:p-10 rounded-3xl border border-autox-border shadow-2xl relative overflow-hidden">
         <div className="text-center mb-8">
           <Link to="/" className="inline-flex items-center gap-2 group mb-3">

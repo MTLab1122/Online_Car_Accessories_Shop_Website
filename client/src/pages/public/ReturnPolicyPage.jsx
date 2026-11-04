@@ -1,9 +1,16 @@
 import React from 'react';
 import { RotateCcw, AlertCircle } from 'lucide-react';
+import SEO from '../../components/common/SEO';
 
 const ReturnPolicyPage = () => {
   return (
     <div className="min-h-screen bg-autox-bg py-16 text-autox-silver">
+      <SEO
+        title="Return & Refund Policy | AUTOX Pakistan"
+        description="Learn about the 7-day return and refund window for automotive accessories at AUTOX. Requirements, fitment returns, and refund processing."
+        canonical="https://autox.pk/return-policy"
+      />
+
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div>
           <span className="text-xs font-mono uppercase tracking-widest text-autox-orange font-bold">

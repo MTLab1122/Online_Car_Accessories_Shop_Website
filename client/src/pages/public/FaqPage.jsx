@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { ChevronDown, HelpCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SEO from '../../components/common/SEO';
+import { generateBreadcrumbSchema, generateFAQSchema } from '../../utils/schemaGenerator';
 
 const FaqPage = () => {
   const [openIndex, setOpenIndex] = useState(0);
@@ -28,8 +30,24 @@ const FaqPage = () => {
     }
   ];
 
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'FAQ', url: '/faq' }
+  ]);
+
+  const faqSchema = generateFAQSchema(
+    faqs.map(f => ({ question: f.q, answer: f.a }))
+  );
+
   return (
     <div className="min-h-screen bg-autox-bg py-16 text-autox-silver">
+      <SEO
+        title="Frequently Asked Questions (FAQ) | AUTOX Pakistan"
+        description="Find clear answers to questions regarding automotive accessories delivery in Pakistan, 3D showroom viewer, cash on delivery, and returns."
+        canonical="https://autox.pk/faq"
+        schema={[breadcrumbSchema, faqSchema]}
+      />
+
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <div className="text-center max-w-xl mx-auto">
           <span className="text-xs font-mono uppercase tracking-widest text-autox-orange font-bold">

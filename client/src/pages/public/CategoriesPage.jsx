@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Layers, Sparkles } from 'lucide-react';
 import { categoryService } from '../../services/categoryService';
+import SEO from '../../components/common/SEO';
+import { generateBreadcrumbSchema, generateCollectionSchema } from '../../utils/schemaGenerator';
 
 const CategoriesPage = () => {
   const [categories, setCategories] = useState([]);
@@ -24,8 +26,33 @@ const CategoriesPage = () => {
     fetchCats();
   }, []);
 
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Categories', url: '/categories' }
+  ];
+
+  const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
+  const collectionSchema = generateCollectionSchema({
+    title: 'Car Accessories Categories & Divisions | AUTOX Pakistan',
+    description: 'Explore 10 curated automotive accessory categories: Aerodynamics, Interior Luxury, LED Lighting, Exhausts, Performance Brakes, Wheels, and Electronics in Pakistan.',
+    url: 'https://autox.pk/categories',
+    items: categories.map(c => ({
+      name: c.name,
+      url: `https://autox.pk/categories/${c.slug}`,
+      image: c.image
+    }))
+  });
+
   return (
     <div className="min-h-screen bg-autox-bg py-12">
+      <SEO
+        title="Car Accessories Categories & Equipment Divisions | AUTOX Pakistan"
+        description="Explore 10 automotive accessory categories in Pakistan. Aerodynamics, interior styling, LED headlights, audio, wheels, and car detailing with express nationwide shipping."
+        canonical="https://autox.pk/categories"
+        keywords="car accessories categories pakistan, auto parts divisions, car lighting interior aero wheels pkr"
+        schema={[breadcrumbSchema, collectionSchema]}
+      />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl mb-12">
           <span className="text-xs font-mono uppercase tracking-widest text-autox-orange font-bold">

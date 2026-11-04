@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, MessageSquare, CheckCircle, Clock } from 'lucide-react';
 import api from '../../services/api';
 import toast from 'react-hot-toast';
+import SEO from '../../components/common/SEO';
+import { generateBreadcrumbSchema } from '../../utils/schemaGenerator';
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +15,11 @@ const ContactPage = () => {
   });
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'Contact', url: '/contact' }
+  ]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -41,6 +48,13 @@ const ContactPage = () => {
 
   return (
     <div className="min-h-screen bg-autox-bg py-16 text-autox-silver">
+      <SEO
+        title="Contact AUTOX Support | Pakistan Automotive Accessories Desk"
+        description="Contact AUTOX support for order tracking, product fitment inquiries, and technical accessories assistance in Pakistan. Islamabad office, phone, and email support."
+        canonical="https://autox.pk/contact"
+        schema={breadcrumbSchema}
+      />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl mb-12">
           <span className="text-xs font-mono uppercase tracking-widest text-autox-orange font-bold">

@@ -25,6 +25,7 @@ import { useWishlist } from '../../context/WishlistContext';
 import { orderService } from '../../services/orderService';
 import { authService } from '../../services/authService';
 import toast from 'react-hot-toast';
+import SEO from '../../components/common/SEO';
 
 const AccountPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -180,6 +181,7 @@ const AccountPage = () => {
 
   return (
     <div className="min-h-screen bg-autox-bg py-12">
+      <SEO title="Pilot Account & Telemetry | AUTOX" noindex={true} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* User Hero Banner */}
         <div className="glass-card p-6 sm:p-8 rounded-3xl border border-autox-border mb-8 flex flex-col sm:flex-row items-center justify-between gap-6">

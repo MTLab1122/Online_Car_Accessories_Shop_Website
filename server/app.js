@@ -20,6 +20,8 @@ import newsletterRoutes from './routes/newsletterRoutes.js';
 import contactRoutes from './routes/contactRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
+import seoRoutes from './routes/seoRoutes.js';
+import guideRoutes from './routes/guideRoutes.js';
 
 import { notFound, errorHandler } from './middleware/errorHandler.js';
 
@@ -68,6 +70,9 @@ if (process.env.NODE_ENV !== 'test') {
 // Serve uploaded static files
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+// Root Discovery & SEO Endpoints (robots.txt, sitemap.xml, llms.txt)
+app.use('/', seoRoutes);
+
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({
@@ -92,6 +97,7 @@ app.use('/api/v1/newsletter', newsletterRoutes);
 app.use('/api/v1/contact', contactRoutes);
 app.use('/api/v1/admin', adminRoutes);
 app.use('/api/v1/upload', uploadRoutes);
+app.use('/api/v1/guides', guideRoutes);
 
 // Error Handling
 app.use(notFound);

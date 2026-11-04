@@ -33,6 +33,7 @@ describe('Frontend Navbar Component Test', () => {
     expect(screen.getByText('Home')).toBeInTheDocument();
     expect(screen.getByText('Shop')).toBeInTheDocument();
     expect(screen.getByText('Categories')).toBeInTheDocument();
+    expect(screen.getByText('Guides')).toBeInTheDocument();
     expect(screen.getByText('3D Showroom')).toBeInTheDocument();
     expect(screen.getByText('About')).toBeInTheDocument();
     expect(screen.getByText('Contact')).toBeInTheDocument();

@@ -1,8 +1,15 @@
 import React from 'react';
+import SEO from '../../components/common/SEO';
 
 const TermsPage = () => {
   return (
     <div className="min-h-screen bg-autox-bg py-16 text-autox-silver">
+      <SEO
+        title="Terms of Service | AUTOX Pakistan"
+        description="Terms of service and legal agreement for shopping car accessories on AUTOX Pakistan. Product usage disclaimers, PKR pricing, and platform rules."
+        canonical="https://autox.pk/terms"
+      />
+
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div>
           <span className="text-xs font-mono uppercase tracking-widest text-autox-orange font-bold">

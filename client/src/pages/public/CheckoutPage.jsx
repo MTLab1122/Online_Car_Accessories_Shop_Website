@@ -15,6 +15,8 @@ import { useCart } from '../../context/CartContext';
 import { useAuth } from '../../context/AuthContext';
 import { orderService } from '../../services/orderService';
 import toast from 'react-hot-toast';
+import SEO from '../../components/common/SEO';
+import { analytics } from '../../utils/analytics';
 
 const CheckoutPage = () => {
   const { cart, clearCart, refreshCart } = useCart();
@@ -62,6 +64,12 @@ const CheckoutPage = () => {
     }
   }, [user]);
 
+  useEffect(() => {
+    if (cart?.items && cart.items.length > 0) {
+      analytics.beginCheckout(cart.items, cart.totalPrice);
+    }
+  }, []);
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -106,6 +114,7 @@ const CheckoutPage = () => {
 
       const res = await orderService.createOrder(payload);
       if (res.success && res.data) {
+        analytics.purchase(res.data);
         setOrderConfirmed(res.data);
         await refreshCart();
         toast.success(`Order ${res.data.orderNumber} placed successfully!`);
@@ -121,6 +130,7 @@ const CheckoutPage = () => {
   if (orderConfirmed) {
     return (
       <div className="min-h-screen bg-autox-bg py-16 flex items-center justify-center p-4">
+        <SEO title="Order Confirmation | AUTOX" noindex={true} />
         <div className="max-w-xl w-full glass-card p-8 sm:p-10 rounded-3xl border border-autox-orange/40 text-center shadow-2xl">
           <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto mb-6 shadow-glow">
             <CheckCircle className="w-8 h-8" />
@@ -178,6 +188,7 @@ const CheckoutPage = () => {
 
   return (
     <div className="min-h-screen bg-autox-bg py-12">
+      <SEO title="Secure Checkout & Dispatch | AUTOX" noindex={true} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="pb-8 border-b border-autox-border">
           <span className="text-xs font-mono uppercase tracking-widest text-autox-orange font-bold">

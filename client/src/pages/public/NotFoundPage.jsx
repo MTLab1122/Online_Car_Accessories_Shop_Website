@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { AlertTriangle, ArrowLeft } from 'lucide-react';
+import SEO from '../../components/common/SEO';
 
 const NotFoundPage = () => {
   return (
     <div className="min-h-[75vh] bg-autox-bg flex flex-col items-center justify-center p-6 text-center">
+      <SEO title="404 - Page Not Found | AUTOX" noindex={true} />
       <div className="w-20 h-20 rounded-3xl bg-autox-card border border-autox-border flex items-center justify-center text-autox-orange mb-6 shadow-glow">
         <AlertTriangle className="w-10 h-10" />
       </div>

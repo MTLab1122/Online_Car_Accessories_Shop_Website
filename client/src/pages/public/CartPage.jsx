@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
   ShoppingBag,
@@ -15,6 +15,8 @@ import {
 } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { useAuth } from '../../context/AuthContext';
+import SEO from '../../components/common/SEO';
+import { analytics } from '../../utils/analytics';
 
 const CartPage = () => {
   const { cart, loading, updateQuantity, removeItem, applyCoupon, removeCoupon, clearCart } = useCart();
@@ -23,6 +25,12 @@ const CartPage = () => {
 
   const [couponInput, setCouponInput] = useState('');
   const [couponSubmitting, setCouponSubmitting] = useState(false);
+
+  useEffect(() => {
+    if (cart?.items && cart.items.length > 0) {
+      analytics.viewCart(cart.items, cart.totalPrice);
+    }
+  }, [cart?.items?.length, cart?.totalPrice]);
 
   const handleApplyCoupon = async (e) => {
     e.preventDefault();
@@ -44,6 +52,7 @@ const CartPage = () => {
   if (!cart.items || cart.items.length === 0) {
     return (
       <div className="min-h-[70vh] flex flex-col items-center justify-center p-6 text-center bg-autox-bg">
+        <SEO title="Shopping Cart | AUTOX" noindex={true} />
         <div className="w-20 h-20 rounded-full bg-autox-card flex items-center justify-center border border-autox-border mb-6">
           <ShoppingBag className="w-8 h-8 text-autox-orange" />
         </div>
@@ -66,6 +75,7 @@ const CartPage = () => {
 
   return (
     <div className="min-h-screen bg-autox-bg py-12">
+      <SEO title="Shopping Cart | AUTOX" noindex={true} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-8 border-b border-autox-border">
           <div>
@@ -150,7 +160,10 @@ const CartPage = () => {
                     </div>
 
                     <button
-                      onClick={() => removeItem(product._id)}
+                      onClick={() => {
+                        analytics.removeFromCart(product, item.quantity);
+                        removeItem(product._id);
+                      }}
                       className="p-2 text-autox-muted hover:text-red-400 transition-colors rounded-lg hover:bg-autox-dark"
                       title="Remove item"
                     >

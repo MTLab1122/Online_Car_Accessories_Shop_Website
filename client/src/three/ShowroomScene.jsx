@@ -4,6 +4,7 @@ import { OrbitControls, Float, Text, ContactShadows, PresentationControls } from
 import { Sun, Moon, Sparkles, RotateCcw, ShoppingBag, Eye, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import SEO from '../components/common/SEO';
 
 // Pedestal Display Item
 const PedestalItem = ({ position, title, subtitle, color, shape = 'wing', isSelected, onSelect }) => {
@@ -135,6 +136,13 @@ const ShowroomScene = () => {
 
   return (
     <div className="relative w-full h-[calc(100vh-76px)] bg-[#080A0D] overflow-hidden">
+      <SEO
+        title="3D Virtual Showroom & Configurator | AUTOX Pakistan"
+        description="Interact with racing aerodynamics, forged alloy wheels, and titanium exhaust systems in our 360-degree real-time Three.js WebGL showroom."
+        canonical="https://autox.pk/showroom"
+        keywords="3d car accessories showroom pakistan, webgl car parts viewer, automotive 3d configurator"
+      />
+
       {/* 3D Canvas */}
       <Canvas
         shadows

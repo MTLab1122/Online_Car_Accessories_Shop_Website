@@ -23,6 +23,9 @@ import { useWishlist } from '../../context/WishlistContext';
 import { useAuth } from '../../context/AuthContext';
 import ProductModelViewer from '../../three/ProductModelViewer';
 import ProductCard from '../../components/products/ProductCard';
+import SEO from '../../components/common/SEO';
+import { generateBreadcrumbSchema, generateProductSchema } from '../../utils/schemaGenerator';
+import { analytics } from '../../utils/analytics';
 import toast from 'react-hot-toast';
 
 const ProductDetailPage = () => {
@@ -64,6 +67,8 @@ const ProductDetailPage = () => {
           if (revRes.success && revRes.data) {
             setReviews(revRes.data);
           }
+
+          analytics.viewItem(res.data.product);
         }
       } catch (err) {
         console.error('Failed to load product details', err);
@@ -81,6 +86,7 @@ const ProductDetailPage = () => {
     try {
       setAddingToCart(true);
       await addItem(product._id, quantity);
+      analytics.addToCart(product, quantity);
     } finally {
       setAddingToCart(false);
     }
@@ -91,6 +97,7 @@ const ProductDetailPage = () => {
     try {
       setAddingToCart(true);
       await addItem(product._id, quantity);
+      analytics.addToCart(product, quantity);
       navigate('/checkout');
     } finally {
       setAddingToCart(false);
@@ -160,8 +167,29 @@ const ProductDetailPage = () => {
     ? Math.round(product.price * (1 - product.discountPercentage / 100))
     : product.price;
 
+  const breadcrumbItems = [
+    { name: 'Home', url: '/' },
+    { name: 'Shop', url: '/shop' },
+    ...(product.category ? [{ name: product.category.name, url: `/categories/${product.category.slug}` }] : []),
+    { name: product.name, url: `/product/${product.slug}` }
+  ];
+
+  const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbItems);
+  const productSchema = generateProductSchema(product);
+  const primaryImage = product.images?.[0]?.url || product.images?.[0] || '';
+
   return (
     <div className="min-h-screen bg-autox-bg py-10">
+      <SEO
+        title={`${product.name} | AUTOX Pakistan`}
+        description={product.shortDescription || (product.description ? product.description.slice(0, 160) : `Buy ${product.name} in Pakistan. Authentic ${product.brand} automotive accessories with express shipping and cash on delivery in PKR.`)}
+        canonical={`https://autox.pk/product/${product.slug}`}
+        ogImage={primaryImage}
+        type="product"
+        keywords={`${product.name.toLowerCase()}, ${product.brand.toLowerCase()} accessories pakistan, ${product.category?.name || 'car accessories'} pkr`}
+        schema={[breadcrumbSchema, productSchema]}
+      />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb Navigation */}
         <nav className="flex items-center gap-2 text-xs font-mono text-autox-muted mb-8">

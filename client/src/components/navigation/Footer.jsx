@@ -84,6 +84,11 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/guides" className="hover:text-autox-orange transition-colors">
+                  Editorial Guides & Care
+                </Link>
+              </li>
+              <li>
                 <Link to="/about" className="hover:text-autox-orange transition-colors">
                   About AUTOX
                 </Link>

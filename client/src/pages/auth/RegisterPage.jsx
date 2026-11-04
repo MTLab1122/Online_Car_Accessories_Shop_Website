@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { User, Mail, Lock, Phone, ArrowRight, ShieldCheck, AlertCircle } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
+import SEO from '../../components/common/SEO';
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
@@ -53,6 +54,7 @@ const RegisterPage = () => {
 
   return (
     <div className="min-h-screen bg-autox-bg flex items-center justify-center p-4 py-16">
+      <SEO title="Create Pilot Account | AUTOX" noindex={true} />
       <div className="w-full max-w-md glass-card p-8 sm:p-10 rounded-3xl border border-autox-border shadow-2xl relative overflow-hidden">
         <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-autox-orange to-transparent" />
 

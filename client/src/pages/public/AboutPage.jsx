@@ -1,10 +1,25 @@
 import React from 'react';
 import { ShieldCheck, Cpu, Target, Flag, Users, Award } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SEO from '../../components/common/SEO';
+import { generateOrganizationSchema, generateBreadcrumbSchema } from '../../utils/schemaGenerator';
 
 const AboutPage = () => {
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Home', url: '/' },
+    { name: 'About', url: '/about' }
+  ]);
+  const orgSchema = generateOrganizationSchema();
+
   return (
     <div className="min-h-screen bg-autox-bg py-16 text-autox-silver">
+      <SEO
+        title="About AUTOX | Pakistan's Premier High-Performance Accessories Destination"
+        description="Learn about AUTOX Pakistan — our mission, 3D interactive showroom technology, verified quality assurance, and nationwide automotive accessories fulfillment."
+        canonical="https://autox.pk/about"
+        schema={[breadcrumbSchema, orgSchema]}
+      />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         {/* Hero Header */}
         <div className="max-w-3xl">

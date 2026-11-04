@@ -16,6 +16,9 @@ import QuickViewModal from '../../components/products/QuickViewModal';
 import { ProductCardSkeleton } from '../../components/common/LoadingSkeleton';
 import { productService } from '../../services/productService';
 import { categoryService } from '../../services/categoryService';
+import SEO from '../../components/common/SEO';
+import { generateBreadcrumbSchema, generateCollectionSchema } from '../../utils/schemaGenerator';
+import { analytics } from '../../utils/analytics';
 
 const ShopPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -92,6 +95,7 @@ const ShopPage = () => {
         if (res.pagination) {
           setPagination(res.pagination);
         }
+        analytics.viewItemList(res.data, 'Catalog Shop View');
       }
     } catch (err) {
       console.error('Product fetch error:', err);
@@ -123,8 +127,33 @@ const ShopPage = () => {
     'Veloce Dynamics'
   ];
 
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Shop', url: '/shop' }
+  ];
+
+  const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
+  const collectionSchema = generateCollectionSchema({
+    title: search ? `Search: ${search} | AUTOX Shop` : 'All High-Performance Car Accessories | AUTOX Pakistan',
+    description: 'Explore the full catalog of verified car accessories in Pakistan. Carbon aerodynamic kits, interior luxury accessories, LED lights, dashcams, and forged wheels.',
+    url: page > 1 ? `https://autox.pk/shop?page=${page}` : 'https://autox.pk/shop',
+    items: products.map(p => ({
+      name: p.name,
+      url: `https://autox.pk/product/${p.slug}`,
+      image: p.images?.[0]?.url || p.images?.[0]
+    }))
+  });
+
   return (
     <div className="min-h-screen bg-autox-bg py-10">
+      <SEO
+        title={search ? `Search results for "${search}" | AUTOX Shop` : 'Shop High-Performance Car Accessories Pakistan | AUTOX'}
+        description="Browse premium automotive accessories in Pakistan with nationwide delivery. Carbon fiber spoilers, 3D laser-fit floor mats, LED headlights, dashcams, and forged rims in PKR."
+        canonical={page > 1 ? `https://autox.pk/shop?page=${page}` : 'https://autox.pk/shop'}
+        keywords="car accessories online shop pakistan, buy car parts lahore karachi, auto accessories pkr, car upgrades islamabad"
+        schema={[breadcrumbSchema, collectionSchema]}
+      />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Breadcrumbs & Title */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-8 border-b border-autox-border">

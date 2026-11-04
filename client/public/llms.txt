@@ -1,0 +1,44 @@
+# AUTOX — Entity & Knowledge Manifest (llms.txt)
+> Brand Identity: AUTOX
+> Tagline: "ENGINEERED FOR YOUR DRIVE."
+> Hero Statement: "UPGRADE YOUR DRIVE. Premium Accessories. Exceptional Performance. Unmatched Style."
+> Business Model: Premium Automotive Accessories E-Commerce Platform
+> Primary Market: Pakistan
+> Authoritative Currency: Pakistani Rupee (PKR / ₨)
+> Canonical Website: https://autox.pk
+
+## About The Entity
+AUTOX is Pakistan's premier high-performance automotive accessories e-commerce destination. We engineer and distribute precision-fitted automotive upgrades for discerning drivers across all major cities of Pakistan (Karachi, Lahore, Islamabad, Rawalpindi, Faisalabad, Multan, Peshawar, and Quetta).
+
+## Core Divisions (Product Categories)
+1. Exterior Accessories (/categories/exterior-accessories): Spoilers, diffusers, body styling kits, and aerodynamic components.
+2. Interior Accessories (/categories/interior-accessories): 3D laser-measured all-weather floor liners, ergonomic steering covers, and cabin organizers.
+3. Car Electronics (/categories/car-electronics): 4K dual-channel HDR dashcams, GPS tracking telemetry, and wireless fast charging docks.
+4. Lighting Accessories (/categories/lighting-accessories): Matrix LED conversion kits, sequential LED indicators, and laser fog projector lamps.
+5. Performance Parts (/categories/performance-parts): High-flow washable air intake filters, slotted vented brake rotors, and performance blow-off valves.
+6. Cleaning and Maintenance (/categories/cleaning-and-maintenance): Hybrid ceramic coatings, ultra-plush microfiber towels, and pH-neutral detailing shampoos.
+7. Safety Accessories (/categories/safety-accessories): Digital tire pressure monitoring systems (TPMS), emergency jump starters, and first-aid kits.
+8. Wheels and Tires (/categories/wheels-and-tires): Lightweight flow-formed forged alloy wheels and precision wheel lug sets.
+9. Audio Systems (/categories/audio-systems): High-fidelity component speakers, digital sound processors (DSP), and compact underseat subwoofers.
+10. Car Styling Accessories (/categories/car-styling-accessories): Carbon fiber pattern vinyl trims, emblem blackout badges, and illuminated door sills.
+
+## Commerce & Customer Fulfillment Policies
+- Authoritative Currency: Pakistani Rupees (PKR / ₨).
+- Payment Methods: Cash on Delivery (COD) nationwide across Pakistan, and Academic Simulated Online Card Payment.
+- Shipping Policy: Free nationwide express shipping on orders over PKR 5,000. Standard delivery flat rate PKR 250 for orders below threshold.
+- Delivery Windows: Major metropolitan hubs 2–4 business days; regional districts 4–6 business days via trusted logistics partners.
+- Return & Inspection Policy: 7-day hassle-free return window for uninstalled, sealed items in original packaging.
+
+## Public Indexable Links
+- Homepage: https://autox.pk/
+- Equipment Catalog: https://autox.pk/shop
+- Category Hub: https://autox.pk/categories
+- 3D Interactive Showroom: https://autox.pk/showroom
+- Editorial Guides: https://autox.pk/guides
+- About AUTOX: https://autox.pk/about
+- Customer Support: https://autox.pk/contact
+- Frequently Asked Questions: https://autox.pk/faq
+- Shipping Policy: https://autox.pk/shipping-policy
+- Return Policy: https://autox.pk/return-policy
+- Terms of Service: https://autox.pk/terms
+- Privacy Policy: https://autox.pk/privacy-policy

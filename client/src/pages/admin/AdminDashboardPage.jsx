@@ -24,6 +24,7 @@ import { adminService } from '../../services/adminService';
 import { categoryService } from '../../services/categoryService';
 import { productService } from '../../services/productService';
 import toast from 'react-hot-toast';
+import SEO from '../../components/common/SEO';
 
 const AdminDashboardPage = () => {
   const [activeTab, setActiveTab] = useState('analytics'); // analytics | orders | products | categories | customers | reviews | coupons
@@ -278,6 +279,7 @@ const AdminDashboardPage = () => {
 
   return (
     <div className="min-h-screen bg-autox-bg py-10">
+      <SEO title="AUTOX Mission Control | Root Admin" noindex={true} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Admin Header */}
         <div className="glass-card p-6 sm:p-8 rounded-3xl border border-autox-border mb-8 flex flex-col sm:flex-row items-center justify-between gap-6">
