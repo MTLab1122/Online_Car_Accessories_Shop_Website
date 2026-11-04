@@ -1,0 +1,36 @@
+{
+  "name": "autox-online-car-accessories-shop",
+  "version": "1.0.0",
+  "description": "AUTOX — 3D Immersive Online Car Accessories Shop (FYP MERN Project)",
+  "private": true,
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "dev": "concurrently -n \"SERVER,CLIENT\" -c \"cyan,magenta\" \"npm run server\" \"npm run client\"",
+    "client": "npm --prefix client run dev",
+    "server": "npm --prefix server run dev",
+    "seed": "npm --prefix server run seed",
+    "test": "npm --prefix server test",
+    "test:client": "npm --prefix client test",
+    "test:all": "npm --prefix server test && npm --prefix client test",
+    "build": "npm --prefix client run build",
+    "lint": "npm --prefix client run lint && npm --prefix server run lint",
+    "install:all": "npm install && cd server && npm install && cd ../client && npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "keywords": [
+    "mern",
+    "threejs",
+    "ecommerce",
+    "car-accessories",
+    "autox",
+    "fyp",
+    "react-three-fiber"
+  ],
+  "author": "AUTOX Team",
+  "license": "ISC"
+}
