@@ -25,6 +25,7 @@ router.use(protect, authorize('admin'));
 
 // Analytics Dashboard
 router.get('/dashboard', getDashboardStats);
+router.get('/overview', getDashboardStats);
 
 // Order Management
 router.get('/orders', getAllOrders);
@@ -48,3 +49,4 @@ router.route('/coupons/:id')
   .delete(deleteCoupon);
 
 export default router;
+

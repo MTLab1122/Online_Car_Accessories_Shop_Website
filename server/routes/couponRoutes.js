@@ -8,3 +8,4 @@ const router = express.Router();
 router.post('/validate', validate(validateCouponSchema), validateCoupon);
 
 export default router;
+

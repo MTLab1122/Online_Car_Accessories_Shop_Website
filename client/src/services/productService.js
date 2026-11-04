@@ -5,3 +5,4 @@ export const productService = {
   getFeatured: () => api.get('/products/featured'),
   getProductBySlug: (slug) => api.get(`/products/${slug}`)
 };
+

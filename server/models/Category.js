@@ -41,3 +41,4 @@ categorySchema.pre('save', function (next) {
 
 const Category = mongoose.model('Category', categorySchema);
 export default Category;
+

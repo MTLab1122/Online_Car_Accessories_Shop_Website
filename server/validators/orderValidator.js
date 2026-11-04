@@ -38,3 +38,4 @@ export const cancelOrderSchema = z.object({
     reason: z.string().min(3, 'Cancellation reason is required')
   })
 });
+

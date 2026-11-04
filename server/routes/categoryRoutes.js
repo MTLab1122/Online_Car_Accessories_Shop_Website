@@ -16,6 +16,8 @@ router.get('/:slug', getCategoryBySlug);
 // Admin category management
 router.post('/', protect, authorize('admin'), createCategory);
 router.patch('/:id', protect, authorize('admin'), updateCategory);
+router.put('/:id', protect, authorize('admin'), updateCategory);
 router.delete('/:id', protect, authorize('admin'), deleteCategory);
 
 export default router;
+

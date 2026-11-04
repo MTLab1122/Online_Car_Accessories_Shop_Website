@@ -15,3 +15,4 @@ export const authService = {
   updateAddress: (id, data) => api.patch(`/users/addresses/${id}`, data),
   deleteAddress: (id) => api.delete(`/users/addresses/${id}`)
 };
+

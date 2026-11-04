@@ -22,8 +22,8 @@ export const subscribe = async (req, res, next) => {
       return successResponse(res, 200, 'You are already subscribed to the AUTOX newsletter.');
     }
 
-    await Newsletter.create({ email: email.toLowerCase(), isSubscribed: true });
-    return successResponse(res, 201, 'Thank you for subscribing to AUTOX updates and exclusive offers!');
+    const sub = await Newsletter.create({ email: email.toLowerCase(), isSubscribed: true });
+    return successResponse(res, 201, 'Thank you for subscribing to AUTOX updates and exclusive offers!', { email: sub.email });
   } catch (err) {
     next(err);
   }
@@ -50,3 +50,4 @@ export const unsubscribe = async (req, res, next) => {
     next(err);
   }
 };
+

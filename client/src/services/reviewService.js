@@ -6,3 +6,4 @@ export const reviewService = {
   updateReview: (id, reviewData) => api.patch(`/reviews/${id}`, reviewData),
   deleteReview: (id) => api.delete(`/reviews/${id}`)
 };
+

@@ -10,3 +10,4 @@ export const cartService = {
   clearCart: () => api.delete('/cart'),
   syncCart: (sessionId) => api.post('/cart/sync', { sessionId })
 };
+

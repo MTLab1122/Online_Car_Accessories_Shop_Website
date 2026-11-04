@@ -129,3 +129,4 @@ const CategoryDetailPage = () => {
 };
 
 export default CategoryDetailPage;
+

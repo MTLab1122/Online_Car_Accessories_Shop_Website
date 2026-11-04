@@ -7,3 +7,4 @@ export const orderService = {
   cancelOrder: (id, reason) => api.patch(`/orders/${id}/cancel`, { reason }),
   getTracking: (id) => api.get(`/orders/${id}/tracking`)
 };
+

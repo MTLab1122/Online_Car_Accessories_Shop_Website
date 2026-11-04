@@ -130,3 +130,4 @@ erDiagram
 The database connector (`server/config/db.js`) detects whether a local MongoDB daemon is running at `127.0.0.1:27017`. If an external cluster is unreachable during development or testing, it activates an embedded `MongoMemoryServer` instance. This ensures:
 1. Automated unit & integration tests run everywhere with zero local daemon requirements.
 2. Students, professors, and evaluating committees can run `npm run dev` or `npm run seed` straight out of the box.
+

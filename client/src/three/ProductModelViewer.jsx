@@ -89,3 +89,4 @@ const ProductModelViewer = ({ modelUrl, productName, fallbackImages = [] }) => {
 };
 
 export default ProductModelViewer;
+

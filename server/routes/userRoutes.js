@@ -22,7 +22,8 @@ router.use(protect); // All user routes require authentication
 
 router.route('/profile')
   .get(getProfile)
-  .patch(validate(updateProfileSchema), updateProfile);
+  .patch(validate(updateProfileSchema), updateProfile)
+  .put(validate(updateProfileSchema), updateProfile);
 
 router.patch('/password', validate(updatePasswordSchema), updatePassword);
 
@@ -35,3 +36,4 @@ router.route('/addresses/:id')
   .delete(deleteAddress);
 
 export default router;
+

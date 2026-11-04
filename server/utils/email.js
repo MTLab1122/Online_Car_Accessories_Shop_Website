@@ -20,3 +20,4 @@ export const sendEmail = async ({ to, subject, html, text }) => {
     return { success: true, simulated: true };
   }
 };
+

@@ -74,3 +74,4 @@ describe('Frontend ProductCard Component Test', () => {
     expect(mockToggleWishlist).toHaveBeenCalledWith('prod123');
   });
 });
+

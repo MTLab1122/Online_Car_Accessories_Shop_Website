@@ -17,9 +17,11 @@ router.use(protect); // Orders require authentication
 router.route('/')
   .post(validate(createOrderSchema), createOrder);
 
+router.get('/my', getMyOrders);
 router.get('/my-orders', getMyOrders);
 router.get('/:id', getOrderById);
 router.patch('/:id/cancel', validate(cancelOrderSchema), cancelOrder);
 router.get('/:id/tracking', getOrderTracking);
 
 export default router;
+

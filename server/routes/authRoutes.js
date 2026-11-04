@@ -39,3 +39,4 @@ router.post('/forgot-password', authLimiter, validate(forgotPasswordSchema), for
 router.post('/reset-password', authLimiter, validate(resetPasswordSchema), resetPassword);
 
 export default router;
+

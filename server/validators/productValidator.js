@@ -45,3 +45,4 @@ export const updateProductSchema = z.object({
     isActive: z.boolean().optional()
   })
 });
+

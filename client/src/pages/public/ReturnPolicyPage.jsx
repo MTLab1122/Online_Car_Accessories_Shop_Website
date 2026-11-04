@@ -42,3 +42,4 @@ const ReturnPolicyPage = () => {
 };
 
 export default ReturnPolicyPage;
+

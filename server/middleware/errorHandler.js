@@ -57,3 +57,4 @@ export const errorHandler = (err, req, res, next) => {
     errors.length > 0 ? errors : (process.env.NODE_ENV === 'development' ? err.stack : undefined)
   );
 };
+

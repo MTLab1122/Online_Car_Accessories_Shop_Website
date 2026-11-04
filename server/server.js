@@ -20,3 +20,4 @@ connectDB().then(() => {
   console.error(`[Server Start Error]: ${err.message}`);
   process.exit(1);
 });
+

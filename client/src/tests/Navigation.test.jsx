@@ -48,3 +48,4 @@ describe('Frontend Navbar Component Test', () => {
     expect(screen.getByText('3')).toBeInTheDocument();
   });
 });
+

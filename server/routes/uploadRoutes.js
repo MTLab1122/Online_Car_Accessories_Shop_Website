@@ -46,3 +46,4 @@ router.post('/multiple', protect, authorize('admin'), (req, res) => {
 });
 
 export default router;
+

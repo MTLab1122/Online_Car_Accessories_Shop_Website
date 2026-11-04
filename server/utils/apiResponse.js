@@ -23,3 +23,4 @@ export const errorResponse = (res, statusCode = 500, message = 'An error occurre
     errors: Array.isArray(errors) ? errors : [errors]
   });
 };
+

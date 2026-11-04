@@ -165,3 +165,4 @@ Currency Standard: `Pakistani Rupees (PKR ₨)`
 |---|---|---|---|
 | `POST` | `/api/v1/upload` | Admin | Upload single image (JPG, PNG, WebP) or 3D model (GLB, GLTF) |
 | `POST` | `/api/v1/upload/multiple` | Admin | Batch image upload up to 8 images per request |
+

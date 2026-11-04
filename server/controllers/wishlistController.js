@@ -30,7 +30,10 @@ export const getWishlist = async (req, res, next) => {
 // @access  Private
 export const addToWishlist = async (req, res, next) => {
   try {
-    const { productId } = req.params;
+    const productId = req.params.productId || req.body.productId;
+    if (!productId) {
+      return errorResponse(res, 400, 'Product ID is required');
+    }
 
     const product = await Product.findById(productId);
     if (!product) {
@@ -63,7 +66,10 @@ export const addToWishlist = async (req, res, next) => {
 // @access  Private
 export const removeFromWishlist = async (req, res, next) => {
   try {
-    const { productId } = req.params;
+    const productId = req.params.productId || req.body.productId;
+    if (!productId) {
+      return errorResponse(res, 400, 'Product ID is required');
+    }
     let wishlist = await Wishlist.findOne({ user: req.user._id });
 
     if (wishlist) {
@@ -80,3 +86,4 @@ export const removeFromWishlist = async (req, res, next) => {
     next(err);
   }
 };
+

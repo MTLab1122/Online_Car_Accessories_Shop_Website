@@ -31,3 +31,4 @@ export const TableSkeleton = ({ rows = 5 }) => {
 };
 
 export default ProductCardSkeleton;
+

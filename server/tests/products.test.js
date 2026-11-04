@@ -133,3 +133,4 @@ describe('Products & Catalog API Test Suite', () => {
     expect(res.body.data.name).toBe('Admin Authorized Spoiler');
   });
 });
+

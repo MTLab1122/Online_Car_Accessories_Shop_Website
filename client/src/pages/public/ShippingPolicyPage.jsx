@@ -57,3 +57,4 @@ const ShippingPolicyPage = () => {
 };
 
 export default ShippingPolicyPage;
+

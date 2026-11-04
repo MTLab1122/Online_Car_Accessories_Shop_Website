@@ -23,3 +23,4 @@ export const adminService = {
     headers: { 'Content-Type': 'multipart/form-data' }
   })
 };
+

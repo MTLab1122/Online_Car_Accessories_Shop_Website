@@ -24,3 +24,4 @@ export const validate = (schema) => (req, res, next) => {
     return errorResponse(res, 400, err.message || 'Invalid request payload');
   }
 };
+

@@ -10,8 +10,13 @@ const router = express.Router();
 
 router.use(protect); // Wishlist requires authentication
 
-router.get('/', getWishlist);
+router.route('/')
+  .get(getWishlist)
+  .post(addToWishlist)
+  .delete(removeFromWishlist);
+
 router.post('/:productId', addToWishlist);
 router.delete('/:productId', removeFromWishlist);
 
 export default router;
+

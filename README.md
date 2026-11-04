@@ -220,3 +220,4 @@ Generates minified, tree-shaken assets in `client/dist/` with route-level code s
   AUTOX automatically catches unreachable MongoDB connections in development and activates an embedded MongoDB instance. You do not need to install MongoDB manually to run tests or demonstrate the application.
 - **Port Conflict (5000 / 5173):**  
   Adjust `PORT` in `server/.env` and `VITE_API_URL` in `client/.env` if another local service occupies default ports.
+

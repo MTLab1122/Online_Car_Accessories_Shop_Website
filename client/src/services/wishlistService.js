@@ -5,3 +5,4 @@ export const wishlistService = {
   addToWishlist: (productId) => api.post(`/wishlist/${productId}`),
   removeFromWishlist: (productId) => api.delete(`/wishlist/${productId}`)
 };
+

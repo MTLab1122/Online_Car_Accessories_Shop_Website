@@ -167,6 +167,10 @@ export const getMyOrders = async (req, res, next) => {
 // @access  Private
 export const getOrderById = async (req, res, next) => {
   try {
+    if (!req.params.id || !req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
+      return errorResponse(res, 404, 'Order not found');
+    }
+
     const order = await Order.findById(req.params.id).populate('user', 'name email phone');
 
     if (!order) {
@@ -257,3 +261,4 @@ export const getOrderTracking = async (req, res, next) => {
     next(err);
   }
 };
+

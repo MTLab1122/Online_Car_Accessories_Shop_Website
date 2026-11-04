@@ -7,3 +7,4 @@ router.post('/subscribe', subscribe);
 router.post('/unsubscribe', unsubscribe);
 
 export default router;
+
