@@ -30,7 +30,9 @@ jobs:
           cache: 'npm'
 
       - name: Install Monorepo Dependencies
-        run: npm ci
+        run: |
+          npm install
+          npm install --prefix client --no-save @rollup/rollup-linux-x64-gnu
 
       - name: Build Production Client
         env:
@@ -57,4 +59,3 @@ jobs:
       - name: Deploy Pages Artifact
         id: deployment
         uses: actions/deploy-pages@v4
-
