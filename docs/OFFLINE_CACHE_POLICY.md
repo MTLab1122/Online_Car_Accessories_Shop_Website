@@ -92,3 +92,4 @@ The offline caching policy and security boundaries are continuously validated by
   - Verifies `/offline.html` rendering.
   - Simulates network drops via `context.setOffline(true)` and verifies offline HUD indicator.
   - Inspects active `caches.open()` entries to mathematically assert that 0 private routes exist in cache storage.
+

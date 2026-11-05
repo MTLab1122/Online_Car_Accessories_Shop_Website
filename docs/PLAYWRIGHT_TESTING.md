@@ -94,3 +94,4 @@ npx playwright show-report playwright-report
 1. **Headless WebGL Optimization:** Launch argument `--disable-features=WebXR` prevents OpenXR stalls on Windows, reducing test duration from ~50s to under 4s per test.
 2. **DOM Content Loaded Strategy:** Navigations utilize `waitUntil: 'domcontentloaded'` with explicit element assertions to avoid blocking on slow external CDNs or heavy textures.
 3. **Strict Database Isolation:** Order placement tests generate unique isolated timestamps and query product stock before and after purchase to verify real persistent atomic inventory decrements.
+

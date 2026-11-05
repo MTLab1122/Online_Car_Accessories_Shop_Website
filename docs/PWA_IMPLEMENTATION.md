@@ -85,3 +85,4 @@ The offline fallback is a fully self-contained page styled with the AUTOX dark a
   - Interactive "Re-Establish Link" retry button with animated loading pulse.
   - Quick action buttons to view previously cached catalog products or the 3D showroom.
   - 100% inline CSS and SVGs requiring zero network roundtrips.
+
