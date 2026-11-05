@@ -14,7 +14,9 @@ export const registerServiceWorker = ({ onUpdate } = {}) => {
 
   window.addEventListener('load', async () => {
     try {
-      const registration = await navigator.serviceWorker.register('/sw.js', { scope: '/' });
+      const baseUrl = import.meta.env.BASE_URL || '/';
+      const swPath = `${baseUrl.replace(/\/$/, '')}/sw.js`;
+      const registration = await navigator.serviceWorker.register(swPath, { scope: baseUrl });
       console.log('[AUTOX PWA] Service Worker registered successfully. Scope:', registration.scope);
 
       // Check for updates

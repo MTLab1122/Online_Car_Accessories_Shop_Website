@@ -8,17 +8,17 @@ const STATIC_CACHE = `autox-static-${CACHE_VERSION}`;
 const IMAGE_CACHE = `autox-images-${CACHE_VERSION}`;
 const CATALOG_CACHE = `autox-catalog-${CACHE_VERSION}`;
 
-// Precached Static Resources
+// Precached Static Resources (Relative paths support both root and subpath deployments)
 const PRECACHE_ASSETS = [
-  '/',
-  '/index.html',
-  '/offline.html',
-  '/manifest.webmanifest',
-  '/logo.svg',
-  '/icons/icon-192x192.png',
-  '/icons/icon-512x512.png',
-  '/icons/icon-maskable-192x192.png',
-  '/icons/icon-maskable-512x512.png'
+  './',
+  './index.html',
+  './offline.html',
+  './manifest.webmanifest',
+  './logo.svg',
+  './icons/icon-192x192.png',
+  './icons/icon-512x512.png',
+  './icons/icon-maskable-192x192.png',
+  './icons/icon-maskable-512x512.png'
 ];
 
 // Security Blacklist: Under NO circumstance should these private routes be cached
@@ -108,10 +108,10 @@ self.addEventListener('fetch', (event) => {
           const cachedResponse = await caches.match(request);
           if (cachedResponse) return cachedResponse;
 
-          const offlinePage = await caches.match('/offline.html');
+          const offlinePage = (await caches.match('offline.html')) || (await caches.match('/offline.html')) || (await caches.match('./offline.html'));
           if (offlinePage) return offlinePage;
 
-          return caches.match('/index.html');
+          return (await caches.match('index.html')) || (await caches.match('/index.html')) || (await caches.match('./index.html'));
         })
     );
     return;
